@@ -1,0 +1,78 @@
+<apex:page standardController="Contact" showHeader="true" 
+      tabStyle="Contact" >
+   <style>
+      .activeTab {background-color: white; color:black; 
+         background-image:none}
+      .inactiveTab { background-color: white; color:black; 
+         background-image:none}
+   </style>
+   <apex:tabPanel switchType="client" selectedTab="tabdetails" 
+                  id="AccountTabPanel" tabClass="activeTab" 
+                  inactiveTabClass="inactiveTab">   
+      <apex:tab label="Details" name="ContactDetails" id="tabdetails" style="background-color:white">
+         <apex:detail relatedList="false" title="true" inlineEdit="true"/>
+      </apex:tab>
+      
+        <apex:tab label="Activities & Tasks" 
+                name="OpenActivities" id="tabOpenActivities" style="background-color:white">
+         <apex:relatedList subject="{!contact}" 
+                           list="OpenActivities" />
+      </apex:tab>
+      
+      <apex:tab label="Activity History" 
+                name="ActivityHistories" id="tabAH" style="background-color:white">
+         <apex:relatedList subject="{!contact}" 
+                           list="ActivityHistories" />
+      </apex:tab>
+        <apex:tab label="Campaign History" 
+                name="CampaignMembers" id="tabCampMembcontact" style="background-color:white">
+         <apex:relatedList subject="{!contact}" 
+                           list="CampaignMembers" />
+      </apex:tab>
+      
+                         <apex:tab label="Opportunities" 
+                name="Opportunities" id="tabOpportunities" style="background-color:white">
+     <apex:pageBlock id="thePageBlock4">            
+            <apex:pageBlockTable value="{!contact.Opportunities__r}" var="c">
+                <apex:column headerValue="Opportunity Name"  value="{!c.Name}"/>
+                <apex:column headerValue="Total Contract Value"  value="{!c.Amount}"/>
+                <apex:column headerValue="Close Date"  value="{!c.CloseDate}"/>
+            </apex:pageBlockTable>
+       </apex:pageBlock>
+       </apex:tab>
+      
+     
+  <apex:tab label="Google Docs, Notes, & Attachments" 
+                name="NotesAndAttachments" id="tabGoogleDocs" style="background-color:white">
+         <apex:relatedList subject="{!contact}" 
+                           list="CombinedAttachments" />
+      </apex:tab>
+
+      <apex:tab label="HTML Email Status" 
+                name="EmailStatuses" id="tabEmailStatuses" style="background-color:white">
+         <apex:relatedList subject="{!contact}" 
+                           list="EmailStatuses" />
+      </apex:tab>
+       
+     
+       
+                <apex:tab label="Contact History" 
+                name="ContactHistories" id="tabcontacthistories" style="background-color:white">
+     <apex:pageBlock id="thePageBlock3">            
+            <apex:pageBlockTable value="{!contact.Histories}" var="c">
+                <apex:column headerValue="Contact ID"  value="{!c.ContactId}"/>
+                <apex:column headerValue="Created By"  value="{!c.CreatedById}"/>
+                <apex:column headerValue="Date"  value="{!c.CreatedDate}"/>
+                <apex:column headerValue="Changed Field"  value="{!c.Field}"/>
+                <apex:column headerValue="Old Value"  value="{!c.OldValue}"/>
+                <apex:column headerValue="New Value"  value="{!c.NewValue}"/>
+                <apex:column headerValue="Deleted"  value="{!c.isDeleted}"/>
+            </apex:pageBlockTable>
+       </apex:pageBlock>
+       </apex:tab>
+      
+
+      
+       
+   </apex:tabPanel>
+</apex:page>

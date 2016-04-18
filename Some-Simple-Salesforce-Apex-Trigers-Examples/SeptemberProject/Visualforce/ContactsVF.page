@@ -1,0 +1,52 @@
+<apex:page standardController="Contact" showHeader="true" 
+      tabStyle="Contact" >
+   <style>
+      .activeTab {background-color: #236FBD; color:white; 
+         background-image:none}
+      .inactiveTab { background-color: lightgrey; color:black; 
+         background-image:none}
+   </style>
+    
+   <apex:tabPanel switchType="client" selectedTab="tabdetails" 
+                  id="ContactTabPanel" tabClass="activeTab" 
+                  inactiveTabClass="inactiveTab"> 
+       
+       
+      <apex:tab label="Details" name="ContDetails" id="tabdetails">
+        <apex:detail relatedList="false" inlineEdit="true"/> 
+      </apex:tab>
+      
+      
+      <apex:tab label="Open Activities" name="OpenActivities" 
+                id="tabOpenAct">
+         <apex:relatedList subject="{!Contact}" 
+                           list="OpenActivities" />
+      </apex:tab>
+      <apex:tab label="Activity History" 
+                name="ActivityHistory" id="tabActivityHistory">
+         <apex:relatedList subject="{!Contact}" 
+                           list="ActivityHistories" />
+      </apex:tab>
+      
+      <apex:tab label="HTML Email Status" 
+                name="HTMLEmailStatus" id="tabHTMLEmailStatus">
+         <apex:relatedList subject="{!Contact}" 
+                           list="EmailStatuses" />
+      </apex:tab>
+      
+      <apex:tab label="Campaign History" 
+                name="CampaignHistory" id="tabCampaignHistory">
+         <apex:relatedList subject="{!Contact}" 
+                           list="CampaignMembers" />
+      </apex:tab>
+        <apex:tab label="Desk.com Cases" 
+                name="Deskcomcases" id="tabDeskcomcases">
+         <apex:relatedList subject="{!Contact}" 
+                           list="Deskcom__Desk_Cases__r" />
+      </apex:tab>
+      
+      
+      
+      
+   </apex:tabPanel>
+</apex:page>

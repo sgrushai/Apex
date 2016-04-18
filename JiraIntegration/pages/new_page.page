@@ -1,0 +1,32 @@
+<apex:page standardController="Lead" showHeader="true" tabStyle="lead">
+
+<apex:sectionheader title="RECENT Leads" subtitle="{!if(Lead.Id==null,'1',Lead.Name)}">
+
+<h1>asdfdasf</h1>
+
+</apex:sectionheader>
+<apex:form >
+<apex:commandbutton action="{!create}" value="New"></apex:commandbutton>
+
+ </apex:form>
+<apex:sectionheader title="Unread" subtitle="{!if(Lead.Id==null,'1',Lead.Name)}"></apex:sectionheader>
+<apex:tabPanel >
+ <apex:tab label="Activity History" 
+                name="RecentlyViewed" id="tabActHistory">
+         <apex:relatedList subject="{!lead}" 
+                           list="RecentlyViewed" />
+</apex:tab>
+</apex:tabPanel>
+
+query(
+SELECT Id, Name
+FROM RecentlyViewed
+WHERE LastViewedDate !=null
+ORDER BY LastViewedDate DESC 
+)
+
+List(lead) aa = [SELECT Id, Name FROM Lead WHERE Name = 'Acme'];
+
+
+
+</apex:page>

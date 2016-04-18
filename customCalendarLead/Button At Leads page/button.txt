@@ -1,0 +1,4 @@
+be sure to create field on leads page: http://joxi.ru/vDr8nDjHpOpq26
+
+also create a button on lead page? or you can terst with link of such syntax:
+https://c.na15.visual.force.com/apex/CreateAppointment?id={!Lead.Id}

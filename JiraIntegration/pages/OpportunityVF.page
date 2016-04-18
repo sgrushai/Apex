@@ -1,0 +1,53 @@
+<apex:page standardController="Opportunity"  showHeader="true" 
+      tabStyle="opportunity" >
+
+   <style>
+      .activeTab {background-color: white; color:black; 
+         background-image:none}
+      .inactiveTab { background-color: white; color:black; 
+         background-image:none}
+   </style>
+   <apex:tabPanel switchType="client" selectedTab="tabdetails" 
+                  id="OpportunityTabPanel" tabClass="activeTab" 
+                  inactiveTabClass="inactiveTab">   
+      <apex:tab label="Details" name="OppDetails" id="tabdetails" style="background-color:white">
+    
+        <apex:detail subject="{!Opportunity.Id}" relatedList="false" title="true" showChatter="true" inlineEdit="true"   />
+      </apex:tab>
+
+     
+       <apex:tab label="Activities & Tasks" name="OpenActivities" 
+                id="tabOpenAct" style="background-color:white">
+         <apex:relatedList subject="{!Opportunity}" 
+                           list="OpenActivities" />
+      </apex:tab>
+        <apex:tab label="Activity History" 
+                name="ActivityHistories" id="tabActHistory" style="background-color:white">
+         <apex:relatedList subject="{!Opportunity}" 
+                           list="ActivityHistories" />
+      </apex:tab>
+
+
+ 
+      <apex:tab label="Google Docs, Notes, & Attachments" 
+                name="GoogleDocsNotesAttachments" id="tabGoogleDocsNotesAttachments" style="background-color:white">
+         <apex:relatedList subject="{!Opportunity}" 
+                           list="CombinedAttachments" />
+      </apex:tab>  
+  
+  
+
+ 
+  
+      
+
+     
+  
+      
+      
+
+      
+       
+   </apex:tabPanel>
+
+</apex:page>

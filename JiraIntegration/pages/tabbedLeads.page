@@ -1,0 +1,56 @@
+<apex:page standardController="Lead" showHeader="true" tabStyle="lead">
+   <style>
+      .activeTab {background-color: white; color:black; background-image:none}
+      .inactiveTab { background-color: white; color:black; background-image:none}
+      </style>
+   <apex:tabPanel switchType="client" selectedTab=" tabdetails" id="LeadTabPanel" tabClass="activeTab" inactiveTabClass="inactiveTab">   
+      <apex:tab label="Details" name="LeadDetails" id="tabdetails" style="background-color:white">
+         <apex:detail relatedList="false" title="true" inlineEdit="true"/>
+      </apex:tab>
+
+
+      
+      <apex:tab label="Activities & Tasks" 
+                name="OpenActivities" id="tabOpenAct" style="background-color:white">
+         <apex:relatedList subject="{!lead}" 
+                           list="OpenActivities" />
+      </apex:tab>
+
+   
+      <apex:tab label="Activity Histories" 
+                name="ActivityHistories" id="tabAH" style="background-color:white">
+         <apex:relatedList subject="{!lead}" 
+                           list="ActivityHistories" />
+      </apex:tab>
+       <apex:tab label="Campaign History" 
+                name="CampaignMembers" id="tabCampMemb" style="background-color:white">
+         <apex:relatedList subject="{!lead}" 
+                           list="CampaignMembers" />
+      </apex:tab>
+   <apex:tab label="HTML Email Status" 
+                name="EmailStatuses" id="tabEmailStatus" style="background-color:white">
+         <apex:relatedList subject="{!lead}" 
+                           list="EmailStatuses" />
+      </apex:tab>
+   
+     
+   
+ <apex:tab label="Lead History" 
+                name="LeadHistory" id="tabLeadHistories" style="background-color:white">
+            <apex:pageBlock id="thePageBlock">
+                <apex:pageBlockTable value="{!lead.Histories}" var="c">
+                   <apex:column headerValue="Lead History ID"  value="{!c.Id}"/>
+                   <apex:column headerValue="Lead ID"  value="{!c.LeadId}"/>
+                   <apex:column headerValue="Created By"  value="{!c.CreatedById}"/>
+                   <apex:column headerValue="Date"  value="{!c.CreatedDate}"/>
+                   <apex:column headerValue="Changed Field"  value="{!c.Field}"/>
+                   <apex:column headerValue="Old Value"  value="{!c.OldValue}"/>
+                   <apex:column headerValue="New Value"  value="{!c.NewValue}"/>
+                   <apex:column headerValue="Deleted"  value="{!c.isDeleted}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlock>                
+               </apex:tab>
+   
+  
+   </apex:tabPanel>
+</apex:page>

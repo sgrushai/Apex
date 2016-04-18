@@ -1,0 +1,76 @@
+<apex:page standardController="Account" showHeader="true" 
+      tabStyle="account" >
+   <style>
+      .activeTab {background-color:  white; color:black; 
+         background-image:none}
+      .inactiveTab { background-color: white; color:black; 
+         background-image:none}
+   </style>
+   <apex:tabPanel switchType="client" selectedTab="tabdetails" 
+                  id="AccountTabPanel" tabClass="activeTab" 
+                  inactiveTabClass="inactiveTab">   
+      <apex:tab label="Details" name="AccDetails" id="tabdetails" style="background-color:white">
+         <apex:detail relatedList="false" title="true" inlineEdit="true"/>
+      </apex:tab>
+       <apex:tab label="Contacts" 
+                name="AccountContacts" id="tabContacts" style="background-color:white">
+                  <apex:pageBlock id="thePageBlockC">            
+            <apex:pageBlockTable value="{!account.contacts}" var="c">
+                <apex:column headerValue="Contact Name"   value="{!c.Name}"/>
+                <apex:column headerValue="Job Title"   value="{!c.Job_Title_cc__c}"/>
+                <apex:column headerValue="E-mail"   value="{!c.Email}"/>
+                <apex:column headerValue="Direct"   value="{!c.phone}"/>
+            </apex:pageBlockTable>
+               </apex:pageBlock>
+       </apex:tab>      
+       <apex:tab label="Activities & Tasks" name="OpenActivities" 
+                id="tabOpenAct" style="background-color:white">
+         <apex:relatedList subject="{!account}" 
+                           list="OpenActivities" />
+      </apex:tab>
+        <apex:tab label="Activity History" 
+                name="ActivityHistories" id="tabActHistory" style="background-color:white">
+         <apex:relatedList subject="{!account}" 
+                           list="ActivityHistories" />
+      </apex:tab>
+      <apex:tab label="Opportunities" name="Opportunities" 
+                id="tabOpp" style="background-color:white"> 
+         <apex:relatedList subject="{!account}" 
+                           list="opportunities" />
+      </apex:tab>
+
+      <apex:tab label="Google Docs, Notes, & Attachments" 
+                name="NotesAndAttachments" id="tabNoteAtt" style="background-color:white">
+         <apex:relatedList subject="{!account}" 
+                           list="CombinedAttachments" />
+      </apex:tab>
+
+ 
+ 
+            
+       <apex:tab label="Account History" 
+                name="AccountH" id="tabAccountH" style="background-color:white">
+
+  <apex:pageBlock id="thePageBlock">            
+            <apex:pageBlockTable value="{!account.Histories}" var="c">
+                <apex:column headerValue="Date"  value="{!c.createddate}"/>
+                <apex:column headerValue="What" value="{!c.field}"/>
+                <apex:column headerValue="Edited By" value="{!c.createdby.name}"/>
+                <apex:column headerValue="From" value="{!c.oldvalue}"/>
+                <apex:column headerValue="To"   value="{!c.newvalue}"/>
+            </apex:pageBlockTable>
+       
+        </apex:pageBlock>
+        </apex:tab>      
+     
+
+     
+     
+  
+      
+      
+
+      
+       
+   </apex:tabPanel>
+</apex:page>

@@ -1,0 +1,170 @@
+<apex:page standardController="Account" showHeader="true" 
+      tabStyle="Account" extensions="redirect"  action="{!redirectme}">
+   <style>
+      .activeTab {background-color: #236FBD; color:white; 
+         background-image:none}
+      .inactiveTab { background-color: lightgrey; color:black; 
+         background-image:none}
+      .line {
+         display: inline
+      }  
+      .colAlign {
+         text-align: center
+      }
+   </style>
+    
+   <apex:tabPanel switchType="client" selectedTab="tabdetails" 
+                  id="AccountTabPanel" tabClass="activeTab" 
+                  inactiveTabClass="inactiveTab"> 
+       
+       
+      <apex:tab label="Details" name="ContDetails" id="tabdetails">
+          <apex:detail relatedList="false" inlineEdit="true"/> 
+          <!--apex:form>
+              <apex:detail relatedList="false" inlineEdit="true" oncomplete="rerenderFunc()"/> 
+              <apex:actionFunction name="rerenderFunc" reRender="AccountTabPanel"/>
+          </apex:form-->
+      </apex:tab>
+       <apex:tab label="Opportunities" name="Opportunities" 
+                id="tabOpp">
+         <apex:relatedList subject="{!Account}" 
+                           list="Opportunities"/>
+      </apex:tab>
+       
+       
+      
+      <apex:tab label="Contacts" 
+                name="Contacts" id="tabContacts">
+         <apex:relatedList subject="{!Account}" 
+                           list="Contacts" />
+      </apex:tab>
+       
+      <apex:tab label="Open Activities" name="OpenActivities" 
+                id="tabOpenAct">
+         <apex:relatedList subject="{!Account}" 
+                           list="OpenActivities" />
+      </apex:tab>
+      <apex:tab label="Activity History" name="ActivityHistory" 
+                id="tabActivityHistory">
+         <apex:relatedList subject="{!Account}" 
+                           list="ActivityHistories" />
+      </apex:tab>
+     
+      
+      
+       <apex:tab label="Locations" 
+                name="FQHCsite" id="tabFQHCsite">
+         <apex:relatedList subject="{!account}" 
+                           list="Locations__r" />
+      </apex:tab>
+       
+      <apex:tab label="Contracts" 
+                name="Contracts" id="tabContracts">
+         <apex:relatedList subject="{!Account}" 
+                           list="Contracts" />
+      </apex:tab>
+      
+      
+      <apex:tab label="Google Docs, Notes, & Attachments" 
+                name="NotesAndAttachments" id="tabNoteAtt">
+         <apex:relatedList subject="{!account}" 
+                           list="CombinedAttachments" />
+      </apex:tab>
+      
+      <!--apex:tab label="PharmaciesA" 
+                name="PharmaciesA" id="tabPharmaciesA">
+         <apex:relatedList subject="{!Account}" 
+                           list="Covered_Entity_Pharmacy__r" />
+      </apex:tab-->
+
+       
+       <apex:tab label="Pharmacies" name="Pharmacies" id="tabPharmacies">
+           <apex:form >
+               <apex:pageBlock >
+                   <div class="pbHeader">
+                       <table border="0" cellpadding="0" cellspacing="0">
+                           <tr>
+                               <td class="pbTitle"><img src="/img/icon/custom51_100/tvCTR24.png" class="relatedListIcon" 
+                                    style="width:24px; display:block; margin-left:0;"/><h2 class="mainTitle">Pharmacies</h2></td>
+                               <td class="pbButton"><input value="New Record" class="btn" name="new" title="New Record" type="button" 
+                                                           onclick="navigateToUrl('/a00/e?CF00N63000000Je0s={!Account.Name}','RELATED_LIST','new00N63000000Je0s');"/></td>
+                           </tr>
+                       </table>
+                   </div>
+
+                   <apex:pageBlockTable value="{!CoverPharmacies}" var="pharm" rendered="{!NOT(ISNULL(CoverPharmacies))}">
+                       <apex:column headerValue="Action">
+                           <div class="colAlign">
+                               <!--a href="{!pharm.editURL}" style="color:#015BA7" class="line">Edit</a>
+                               <p style="color:gray" class="line"> | </p-->
+                               <apex:commandLink style="color:#015BA7" onclick="return confirm('Are you sure?')" 
+                                                 action="{!deletingRecord}" value="Del">
+                                   <apex:param name="phId" value="{!pharm.objId}"/>
+                                   <apex:actionSupport event="oncomlete" reRender="tabPharmacies"/>
+                               </apex:commandLink>
+                           </div>
+                       </apex:column>
+                       <!--apex:column headerValue="Record">
+                           <a href="/{!pharm.objId}" style="color:black">{!pharm.recordName}</a>
+                       </apex:column-->
+                       <apex:column headerValue="Pharmacy">
+                           <a href="/{!pharm.accId}" style="color:black">{!pharm.Name}</a>
+                       </apex:column>
+                       <apex:column headerValue="Wholesaler" value="{!pharm.wholesaler}"/>
+                       <apex:column headerValue="Billing Country" value="{!pharm.BillingCountry}"/>
+                       <apex:column headerValue="Billing State" value="{!pharm.BillingState}"/>
+                       <apex:column headerValue="Billing City" value="{!pharm.BillingCity}"/>
+                       <apex:column headerValue="Verification Stage" value="{!pharm.Verification_Stage}"/>
+                       <apex:column headerValue="Verification Status" value="{!pharm.Verification_Status}"/>
+                       <apex:column headerValue="Last Modified Date" value="{!pharm.LastModifiedDate}"/>
+                       <apex:column headerValue="Created By">
+                           <a href="/{!pharm.userId}" style="color:black" class="line">{!pharm.userName}</a>
+                           <apex:outputText value=", {!pharm.CreatedByDate}"/>
+                       </apex:column>
+                   </apex:pageBlockTable>
+                   <apex:outputLabel value="No records to display" rendered="{!(ISNULL(CoverPharmacies))}" styleClass="noRowsHeader"></apex:outputLabel>
+               </apex:pageBlock>
+           </apex:form>
+       </apex:tab>       
+      
+       
+       
+       
+      <!--apex:tab label="Wholesaler">
+        <apex:pageBlock title="Wholesaler">
+            <apex:pageBlockTable value="{! account.Covered_Entity_Pharmacy__r}" var="item">
+                <apex:column value="{! item.Wholesaler_p__c}"/> 
+                <apex:column value="{!$User.FirstName}"/>
+            </apex:pageBlockTable> 
+        </apex:pageBlock>
+      </apex:tab-->
+
+      <apex:tab label="Wholesaler">
+        <apex:pageBlock title="Wholesalers">
+            <apex:pageBlockTable value="{!wholesalerList}" var="w" rendered="{!NOT(ISNULL(wholesalerList))}">
+                <apex:column headerValue="Wholesaler">
+                    <a href="/{!w.Id}" style="color:black">{!w.Name}</a>
+                </apex:column>
+                <apex:column value="{!w.Phone}"/>
+                <apex:column value="{!w.Fax}"/>
+                <apex:column value="{!w.BillingCountry}"/>
+                <apex:column value="{!w.BillingState}"/>
+                <apex:column value="{!w.BillingCity}"/>
+                <apex:column headerValue="Last Modified Date">
+                    <apex:outputText value="{0,date,MM/dd/yyyy}"> 
+                        <apex:param value="{!w.LastModifiedDate}"/> 
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headerValue="Created By">
+                    <a href="/{!w.CreatedById}" style="color:black" class="line">{!w.CreatedBy.Name}</a>
+                    <apex:outputText value=", {0,date,MM/dd/yyyy hh:mm a}"> 
+                        <apex:param value="{!w.CreatedDate}"/> 
+                    </apex:outputText>
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:outputLabel value="No records to display" rendered="{!(ISNULL(wholesalerList))}" styleClass="noRowsHeader"></apex:outputLabel>
+        </apex:pageBlock>
+      </apex:tab>      
+     
+   </apex:tabPanel>
+</apex:page>

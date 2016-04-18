@@ -1,0 +1,94 @@
+<apex:page showChat="false" sidebar="false" showHeader="false" standardController="Opportunity" extensions="JIRALogIn" standardStylesheets="false" applyBodyTag="true" applyHtmlTag="true">
+  <style>
+    body {
+  background: #eee !important;
+}
+
+.wrapper {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 30px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 20px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+    </style>
+    <apex:includeScript value="{!URLFOR($Resource.jqueryui, 'jquery-ui-1.11.4/external/jquery/jquery.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jqueryCookie, 'carhartl-jquery-cookie-92b7715/jquery.cookie.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.bootstrap, 'bootstrap-3.3.6-dist/css/bootstrap.min.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.bootstrap, 'bootstrap-3.3.6-dist/js/bootstrap.js')}"/> 
+    <apex:includeScript value="{!URLFOR($Resource.bootstrap, 'bootstrap-3.3.6-dist/js/bootstrap.min.js')}"/>
+ 
+
+        
+     <div class="wrapper">
+         <apex:form styleClass="form-signin" id="authenticationInJiraForm">  
+             <apex:actionRegion >
+          <h2 class="form-signin-heading">Please login</h2>
+            <apex:inputText id="username" html-class="form-control" value="{!username}"  title="Username" html-placeholder="Username" html-autofocus=""/><br/>
+          <apex:inputSecret id="password" html-class="form-control" value="{!password}"  title="Password" html-placeholder="Password" />  
+          <!--label class="checkbox">
+              <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"/> Remember me
+          </label-->
+         <button class="btn btn-lg btn-primary btn-block" type="submit"  onclick="f1();return false;" id="logInJiraSendRequest">Login</button>   
+             
+              <apex:actionFunction id="f1" name="f1" action="{!logInJIRA}" reRender="authenticationInJiraForm" oncomplete="return closePopup('{!Opportunity.Id}')" />
+             <span id="spanStatusa" style="display: none" >{!status}</span>
+        <span id="spanBodya" style="display: none" >Body: {!body}</span> 
+        <span id="spanStatusCodea" style="display: none" >{!statusCode}</span> 
+             
+             </apex:actionRegion>
+         </apex:form>
+     </div>
+  
+    <script>
+     function closePopup(id){
+           var statusCode=document.getElementById("spanStatusCodea").innerHTML;
+         if(statusCode==200){
+             window.opener.po();
+             window.close();
+             //var newWin=window.close('{!$Page.logInJIRA}?id=' + id, 'PopUp',
+             // 'height=450,width=650,left=300,top=100,resizable=no,scrollbars=no,toolbar=no,status=no,channelmode=yes');
+             //   return false;
+         }else if(statusCode==401){
+             alert('Please check your username and password. If you still can not log in, contact your Salesforce administrator.');
+      }else{
+          alert('Internal Server Error');
+      }
+     }   
+     </script>
+        
+</apex:page>

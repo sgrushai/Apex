@@ -1,0 +1,61 @@
+<apex:page standardController="Campaign" showHeader="true" 
+      tabStyle="Campaign" >
+   <style>
+      .activeTab {background-color: #236FBD; color:white; 
+         background-image:none}
+      .inactiveTab { background-color: lightgrey; color:black; 
+         background-image:none}
+   </style>
+    
+   <apex:tabPanel switchType="client" selectedTab="tabdetails" 
+                  id="CampaignTabPanel" tabClass="activeTab" 
+                  inactiveTabClass="inactiveTab"> 
+       
+       
+      <apex:tab label="Details" name="CampaignDetails" id="tabdetails">
+        <apex:detail relatedList="false" inlineEdit="true"/> 
+      </apex:tab>
+      <apex:tab label="Campaign Hierarchy" 
+                name="CampaignHierarchy" id="tabCampaignHierarchy">
+         <apex:relatedList subject="{!Campaign}" 
+                           list="ChildCampaigns" />
+      </apex:tab>
+      
+      <apex:tab label="Open Activities" name="OpenActivities" 
+                id="tabOpenAct">
+         <apex:relatedList subject="{!Campaign}" 
+                           list="OpenActivities" />
+      </apex:tab>
+      <apex:tab label="Activity History" 
+                name="ActivityHistory" id="tabActivityHistory">
+         <apex:relatedList subject="{!Campaign}" 
+                           list="ActivityHistories" />
+      </apex:tab>
+      
+       <apex:tab label="Opportunities" 
+                name="Opportunities" id="tabOpportunities">
+         <apex:relatedList subject="{!Campaign}" 
+                           list="Opportunities" />
+      </apex:tab>
+      <apex:tab label="Google Docs & Attachments" 
+                name="NotesAndAttachments" id="tabNoteAtt">
+         <apex:relatedList subject="{!Campaign}" 
+                           list="CombinedAttachments" />
+      </apex:tab>
+       <apex:tab label="Campaign Members" 
+                name="CampaignMembers" id="tabCampaignMembers">
+         <apex:relatedList subject="{!Campaign}" 
+                           list="CampaignMembers" />
+      </apex:tab>
+      
+       
+    
+      
+      
+     
+      
+      
+      
+      
+   </apex:tabPanel>
+</apex:page>

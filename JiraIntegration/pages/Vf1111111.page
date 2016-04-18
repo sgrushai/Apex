@@ -1,0 +1,82 @@
+<apex:page standardController="lead">
+	<apex:sectionHeader title="Lead Edit" subtitle="{!lead.Name}"/>
+	<apex:form >
+		<apex:pageBlock title="Lead Edit" mode="edit">
+
+			<apex:pageBlockButtons >
+				<apex:commandButton value="Save" action="{!save}"/>
+				<apex:commandButton value="Save & New" action="{!save}" />
+				<apex:commandButton value="Cancel" action="{!cancel}"/>
+			</apex:pageBlockButtons>
+
+
+			<apex:pageBlockSection title="Lead Information" columns="2">
+				<apex:inputField value="{!lead.OwnerId}" required="false"/>
+				<apex:inputField value="{!lead.Phone}" required="false"/>
+				<apex:inputField value="{!lead.Business_Unit__c}" required="true"/>
+				<apex:inputField value="{!lead.MobilePhone}" required="false"/>
+				<apex:inputField value="{!lead.FirstName}" required="false"/>
+				<apex:inputField value="{!lead.Fax}" required="false"/>
+				<apex:inputField value="{!lead.LastName}" required="true"/>
+				<apex:inputField value="{!lead.Toll_Free__c}" required="false"/>
+				<apex:inputField value="{!lead.Title}" required="false"/>
+				<apex:inputField value="{!lead.DoNotCall}" required="false"/>
+				<apex:inputField value="{!lead.Job_Function__c}" required="false"/>
+				<apex:inputField value="{!lead.LinkedIn__c}" required="false"/>
+				<apex:inputField value="{!lead.ReferrerId__c}" required="false"/>
+				<apex:inputField value="{!lead.Email}" required="false"/>
+				<apex:inputField value="{!lead.PartnerReferral__c}" required="false"/>
+				<apex:inputField value="{!lead.HasOptedOutOfEmail}" required="false"/>
+				<apex:inputField value="{!lead.LeadSource}" required="false"/>
+				<apex:inputField value="{!lead.Lead_s_role_in_decision_making__c}" required="false"/>
+				<apex:inputField value="{!lead.Lead_Source_Other__c}" required="false"/>
+				<apex:inputField value="{!lead.Company}" required="true"/>
+				<apex:inputField value="{!lead.Status}" required="true"/>
+				<apex:inputField value="{!lead.Website}" required="false"/>
+				<apex:inputField value="{!lead.Reason_Disqualified__c}" required="false"/>
+				<apex:inputField value="{!lead.Street}" required="false"/>
+				<apex:inputField value="{!lead.Reason_Disqualified_Comments__c}" required="false"/>
+				<apex:inputField value="{!lead.City}" required="false"/>
+				<apex:inputField value="{!lead.Rating}" required="false"/>
+				<apex:inputField value="{!lead.State}" required="false"/>
+				<apex:inputField value="{!lead.PostalCode}" required="false"/>
+				<apex:inputField value="{!lead.Country}" required="false"/>
+				<apex:inputField value="{!lead.DUNS_Number__c}" required="false"/>
+				<apex:inputField value="{!lead.Lead_TYpe__c}" required="true"/>
+				<apex:inputField value="{!lead.High_Touch_Record__c}" required="false"/>
+			</apex:pageBlockSection>
+
+
+			<apex:pageBlockSection title="Additional Information" columns="2">
+				<apex:inputField value="{!lead.Current_Platform__c}" required="false"/>
+				<apex:inputField value="{!lead.CurrencyIsoCode}" required="true"/>
+				<apex:inputField value="{!lead.Current_Platform_Other__c}" required="false"/>
+				<apex:inputField value="{!lead.Description}" required="false"/>
+				<apex:inputField value="{!lead.Registered_Platform_s__c}" required="false"/>
+				<apex:inputField value="{!lead.Business_Challenge__c}" required="false"/>
+				<apex:inputField value="{!lead.Registered_Platform_Other__c}" required="false"/>
+				<apex:inputField value="{!lead.Demandware_Target_Account__c}" required="false"/>
+			</apex:pageBlockSection>
+
+
+			<apex:pageBlockSection title="Qualification" columns="2">
+				<apex:inputField value="{!lead.Deal_Size__c}" required="false"/>
+				<apex:inputField value="{!lead.Year_founded__c}" required="false"/>
+				<apex:inputField value="{!lead.Industry}" required="false"/>
+				<apex:inputField value="{!lead.AnnualRevenue}" required="false"/>
+				<apex:inputField value="{!lead.Industry_Other__c}" required="false"/>
+				<apex:inputField value="{!lead.CanGetMoney__c}" required="false"/>
+				<apex:inputField value="{!lead.TypeOfMerchendise__c}" required="false"/>
+				<apex:inputField value="{!lead.HasTimeFrame__c}" required="false"/>
+				<apex:inputField value="{!lead.Type_of_Merchandise_Other__c}" required="false"/>
+				<apex:inputField value="{!lead.Competition__c}" required="false"/>
+				<apex:inputField value="{!lead.Geography__c}" required="false"/>
+				<apex:inputField value="{!lead.Competition_Other__c}" required="false"/>
+				<apex:inputField value="{!lead.Geography_Other__c}" required="false"/>
+			</apex:pageBlockSection>
+
+
+
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

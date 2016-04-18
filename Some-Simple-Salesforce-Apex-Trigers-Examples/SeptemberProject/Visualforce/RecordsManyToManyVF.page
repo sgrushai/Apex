@@ -1,0 +1,52 @@
+<apex:page standardcontroller="Cover_Entity_Pharmacy__c" extensions="RecordsMTMController">
+    <apex:form >
+    	<apex:pageMessages id="msgs"/>
+    	<apex:pageBlock title="Record Edit">
+        	<apex:pageBlockSection title="Record information">
+                <apex:pageBlockSection showHeader="false">
+            		<apex:outputField value="{!Cover_Entity_Pharmacy__c.Name}"/>
+                </apex:pageBlockSection><br/>
+                <apex:pageBlockSection showHeader="false" columns="1">
+                    <apex:outputField value="{!Cover_Entity_Pharmacy__c.Covered_Entity__c}" />
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Covered_Entity__r.Phone}"/>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Covered_Entity__r.Verification_Status__c}"/>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Covered_Entity__r.Verification_Stage__c}"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection id="pharmMain" showHeader="false" columns="1">
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Pharmacy__c}">
+                        <apex:actionSupport event="onchange" action="{!rerenderPharmacy}" rerender="pharmMain, pharmAddress, msgs"/>
+                    </apex:inputField>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Pharmacy__r.Phone}"/>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Pharmacy__r.Verification_Status__c}"/>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Pharmacy__r.Verification_Stage__c}"/>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Pharmacy__r.Pharmacy_active_status__c}"/>
+					<apex:inputField value="{!Cover_Entity_Pharmacy__c.Pharmacy__r.Wholesaler__c}"/>
+                </apex:pageBlockSection>                
+        	</apex:pageBlockSection>
+            <apex:pageBlockSection title="Address">
+                <apex:pageBlockSection showHeader="false" columns="1">
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Covered_Entity__r.BillingCountry}"/>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Covered_Entity__r.BillingState}"/>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Covered_Entity__r.BillingCity}"/>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Covered_Entity__r.ShippingCountry}"/>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Covered_Entity__r.ShippingState}"/>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Covered_Entity__r.ShippingCity}"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection id="pharmAddress" showHeader="false" columns="1">
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Pharmacy__r.BillingCountry}"/>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Pharmacy__r.BillingState}"/>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Pharmacy__r.BillingCity}"/>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Pharmacy__r.ShippingCountry}"/>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Pharmacy__r.ShippingState}"/>
+                    <apex:inputField value="{!Cover_Entity_Pharmacy__c.Pharmacy__r.ShippingCity}"/>
+                </apex:pageBlockSection>                
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!saveChangesInRecord}" oncomplete="saveChanges()"/>
+                    <apex:actionFunction name="saveChanges" action="{!save}"/>
+        		<apex:commandButton value="Cancel" action="{!cancel}"/>
+      		</apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

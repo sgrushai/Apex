@@ -1,0 +1,226 @@
+<apex:page standardController="Opportunity" extensions="CreateJIRAIssueController,GetJIRAIssues,JIRA"  tabStyle="opportunity" applyBodyTag="true" applyHtmlTag="true" id="OppB" >
+    <style>
+      .activeTab {background-color: white; color:black; 
+         background-image:none}
+      .inactiveTab { background-color: white; color:black; 
+         background-image:none}
+    
+       .listHoverLinks{display:none}
+   </style>
+    
+    <apex:tabPanel switchType="client" selectedTab="tabdetails" 
+                  id="OpportunityTabPanel" tabClass="activeTab" 
+                    inactiveTabClass="inactiveTab" >  
+     <apex:tab label="Details" name="OppDetails" id="tab" style="background-color:white"  >
+    <apex:form id="emailform"> 
+        <center>
+            <div Id="sendRequestToJira"> 
+
+                <apex:commandButton value="Evaluate Request for Creative Team Services" disabled="{!if(Opportunity.BusinessUnit__c=='OPCO US' ||
+                            Opportunity.BusinessUnit__c=='OPCO UK'||Opportunity.BusinessUnit__c=='OPCO DACH',False,True)}"
+                            id="Evaluate_Request_for_Creative_Team_Services" onclick="send_Evaluate_Request();return false;"  />
+                 
+                 <apex:actionStatus id="Evaluate_Request_Status">
+                 <apex:facet name="start"> 
+                        <img src="{!$Resource.Spinner2}"  style="vertical-align: middle"/>
+                 </apex:facet>
+                 </apex:actionStatus>
+        
+              <apex:commandButton value="Request OnePoint project"  disabled="{!if(Opportunity.BusinessUnit__c=='OPCO US' ||
+                            Opportunity.BusinessUnit__c=='OPCO UK'||Opportunity.BusinessUnit__c=='OPCO DACH',False,True)}"
+                            id="Request_OnePoint_project"  onclick="send_OnePoint_project();return false;" rendered="{!if(btn==true, false, true)}"/> 
+                <apex:actionStatus id="Request_OnePoint_project_Status">
+                <apex:facet name="start"> 
+                        <img src="{!$Resource.Spinner2}"  style="vertical-align: middle"/>
+                </apex:facet>
+                </apex:actionStatus>
+        
+             <apex:commandButton value="Request High Level Estimate" disabled="{!if(Opportunity.BusinessUnit__c=='OPCO US' ||
+                            Opportunity.BusinessUnit__c=='OPCO UK'||Opportunity.BusinessUnit__c=='OPCO DACH',False,True)}" 
+                            id="Request_High_Level_Estimate" onclick="send_High_Level_Estimate();return false;" rendered="{!if(btn2==true, false, true)}"/> 
+                <apex:actionStatus id="Request_High_Level_Estimate_Status">
+                <apex:facet name="start"> 
+                        <img src="{!$Resource.Spinner2}"  style="vertical-align: middle"/>
+                </apex:facet>
+                </apex:actionStatus>
+          </div>
+        </center>
+<apex:actionRegion id="a">
+
+        <span id="spanStatus"  style="display: none">{!status}</span>
+        <span id="spanBody"  style="display: none">Body: {!body}</span> 
+        <span id="spanStatusCode"  style="display: none">{!statusCode}</span> 
+       
+    <apex:actionFunction id="Evaluate_Request" name="Evaluate_Request" action="{!evaluateRequest}"
+                         reRender="emailform, oppdetail"  oncomplete="return alertstatus()" status="Evaluate_Request_Status">
+        <apex:param name="baseUrl" assignTo="{!baseUrl}" value="https://jira-stage.ontrq.com"/>
+        <apex:param name="systemId" assignTo="{!systemId}" value="1"/>
+        <apex:param name="objectType" assignTo="{!objectType}" value="Opportunity"/>
+        <apex:param name="projectKey" assignTo="{!projectKey}" value="IP"/> 
+        <apex:param name="issueType" assignTo="{!issueType}" value="13502"/>
+     </apex:actionFunction> 
+    
+     <apex:actionFunction id="OnePoint_project" name="OnePoint_project" action="{!requestOnePoint}"
+                         reRender="emailform, oppdetail" oncomplete="return alertstatus()" status="Request_OnePoint_project_Status">
+        <apex:param name="baseUrl" assignTo="{!baseUrl}" value="https://jira-stage.ontrq.com"/>
+        <apex:param name="systemId" assignTo="{!systemId}" value="1"/>
+        <apex:param name="objectType" assignTo="{!objectType}" value="Opportunity"/>
+        <apex:param name="projectKey" assignTo="{!projectKey}" value="IP"/>
+        <apex:param name="issueType" assignTo="{!issueType}" value="13503"/>
+    </apex:actionFunction>
+    
+    <apex:actionFunction id="High_Level_Estimate" name="High_Level_Estimate" action="{!requestHighLevel}"
+                         reRender="emailform, oppdetail" oncomplete="return alertstatus()" status="Request_High_Level_Estimate_Status">
+        <apex:param name="baseUrl" assignTo="{!baseUrl}" value="https://jira-stage.ontrq.com"/>
+        <apex:param name="systemId" assignTo="{!systemId}" value="1"/>
+        <apex:param name="objectType" assignTo="{!objectType}" value="Opportunity"/>
+        <apex:param name="projectKey" assignTo="{!projectKey}" value="{!BusinessUnit}"/>
+        <apex:param name="issueType" assignTo="{!issueType}" value="12000"/>
+    </apex:actionFunction>
+  
+</apex:actionRegion>
+     
+</apex:form> 
+
+           <apex:form id="oppDetails">
+                <apex:actionFunction name="rerender" id="rerender" reRender="emailform, oppdetail"/>
+           </apex:form>
+          <apex:detail subject="{!Opportunity.Id}" relatedList="true" title="true"  inlineEdit="true" id="oppdetail" oncomplete="return j$.fn.reRenderEmailform()" />
+       </apex:tab>
+        
+       <apex:tab label="JIRA Issues" name="JIRA Issues"  id="tabJIRAIssues"  style="background-color:white" >
+            <apex:pageblock id="JIRAFetchIssues" title="Jira Issues"> 
+              <apex:pagemessages />
+              <apex:form >
+                  <apex:actionRegion >
+                     <apex:actionStatus id="counterStatus">
+                         <apex:facet name="start"> 
+                             <center>
+                             <img src="{!$Resource.Spinner}" />
+                             </center>
+                         </apex:facet>
+                     </apex:actionStatus>
+                     <!--apex:commandButton id="refreshJiraIssues" onclick="getIssues();return false;" title="Refresh GIRA Issues" value="Refresh GIRA Issues" /-->
+                     <apex:actionFunction name="getIssues" action="{!is}" reRender="JIRAFetchIssues"  status="counterStatus" oncomplete="return logInToGetIssues()"/>
+                     <span id="spanGetJIRAIssuesStatusCode" style="display: none">{!GetJIRAIssuesStatusCode}</span>
+                 </apex:actionRegion>
+            </apex:form>
+               <apex:pageBlockTable value="{!listIssues}" var="issue" >
+           
+                   <apex:column headerValue="Issue Key">
+                         <apex:outputLink value="https://jira-stage.ontrq.com/browse/{!issue.key}" target="_blank">{!issue.key}</apex:outputLink>
+                   </apex:column>
+                   <apex:column headerValue="Resolution" value="{!issue.resolution}"/>
+                   <apex:column headerValue="Summary" value="{!issue.summary}"/>
+                   <apex:column headerValue="Status" value="{!issue.status}" />
+                   <apex:column headerValue="Assignee" value="{!issue.assignee}" />
+                   <apex:column headerValue="Type" value="{!issue.type}" />
+              </apex:pageBlockTable>
+           </apex:pageblock>
+           <!--{!IssuesJSON}-->
+       </apex:tab>
+        
+       <apex:tab label="Activities & Tasks" name="OpenActivities" 
+                id="tabOpenAct" style="background-color:white">
+         <apex:relatedList subject="{!Opportunity}" 
+                           list="OpenActivities" />
+      </apex:tab>
+        
+      <apex:tab label="Activity History"  name="ActivityHistories" id="tabActHistory" style="background-color:white">
+            <apex:relatedList subject="{!Opportunity}"  list="ActivityHistories" />
+      </apex:tab>
+        
+      <apex:tab label="Campaign Influence"  name="CampaignMembers" id="tabCampMembopp" style="background-color:white">
+            <div Id="CampaignInfluenceClone">
+            </div>
+      </apex:tab> 
+        
+      <apex:tab label="Google Docs, Notes, & Attachments"  name="GoogleDocsNotesAttachments" id="tabGoogleDocsNotesAttachments" style="background-color:white">
+            <apex:relatedList subject="{!Opportunity}"  list="CombinedAttachments" />
+      </apex:tab>
+
+ <apex:tab label="Opportunity History" 
+                name="OppH" id="tabOppH" style="background-color:white">
+
+  <apex:pageBlock id="thePageBlock">            
+            <apex:pageBlockTable value="{!opportunity.Histories}" var="c">
+                <apex:column headerValue="Date"  value="{!c.createddate}"/>
+                <apex:column headerValue="What" value="{!c.field}"/>
+                <apex:column headerValue="Edited By" value="{!c.createdby.name}"/>
+                <apex:column headerValue="From" value="{!c.oldvalue}"/>
+                <apex:column headerValue="To"   value="{!c.newvalue}"/>
+            </apex:pageBlockTable>
+       
+        </apex:pageBlock>
+        </apex:tab>      
+
+        
+   </apex:tabPanel>  
+
+     <script type="text/javascript">
+    function po() {
+   getIssues();
+    }
+    
+      function send_Evaluate_Request(){
+          if (confirm("Are you sure you want to Evaluate Request for Creative Team Services?")) {
+               Evaluate_Request();
+           }
+       }
+      function send_OnePoint_project(){
+         if (confirm("Are you sure you want to request OnePoint project?")) {
+             OnePoint_project();
+             }
+     }
+     function send_High_Level_Estimate(){
+        if (confirm("Are you sure you want to Request High Level Estimate?")) {
+              High_Level_Estimate();
+            }
+    }
+    function alertstatus(){
+        var status=document.getElementById("spanStatus").innerHTML;
+        var body=document.getElementById("spanBody").innerHTML;
+        var statusCode=document.getElementById("spanStatusCode").innerHTML;
+        var issuekey = body.split('"'); 
+        if(status=='OK'){
+        alert('JIRA Issue: '+issuekey[3]+ ' has been created successfully');
+        }else if(statusCode==401){ 
+            popup = window.open("apex/logInJIRA?id={!Opportunity.Id}", "newPopup", "width=500,height=550, scrollbars=no, location=no");
+             popup.focus();
+        }else{
+         alert('JIAR Issue was not created'+'\n'+body);
+        }
+        j$("div.bRelatedList.first[id*='RelatedCampaignInfluenceList']").css("display","none");
+    }
+    
+    function logInToGetIssues(){
+        var statusCode=document.getElementById("spanGetJIRAIssuesStatusCode").innerHTML;
+             if(statusCode==401){ 
+                 popup = window.open("apex/logInJIRA?id={!Opportunity.Id}", "newPopup", "width=500,height=550, scrollbars=no, location=no"); 
+             } 
+     }
+   
+     </script>
+<script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jQ, 'js/jquery-1.6.2.min.js')}"> 
+</script>  
+<script>
+j$ = jQuery.noConflict();
+   
+    j$(document).ready(function() { 
+        j$.fn.reRenderEmailform = function(){
+                                  rerender();
+                                  setTimeout(function() { 
+                                  j$("div.bRelatedList.first[id*='RelatedCampaignInfluenceList']").css("display","none"); 
+                                                         }, 1000); 
+                                           }
+       j$("td.rich-tabhdr-side-cell:contains('JIRA')").click(function() { 
+           getIssues();
+        });
+          j$("div.listRelatedObject.opportunityBlock").clone().appendTo("#CampaignInfluenceClone");        
+          j$("div.bRelatedList.first[id*='RelatedCampaignInfluenceList']").css("display","none"); 
+          
+    });
+</script>
+
+
+</apex:page>

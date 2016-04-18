@@ -1,0 +1,121 @@
+<apex:page standardController="Account" showHeader="true" 
+      tabStyle="Account" extensions="redirect">
+   <style>
+      .activeTab {background-color: #236FBD; color:white; 
+         background-image:none}
+      .inactiveTab { background-color: lightgrey; color:black; 
+         background-image:none}
+      .line {
+         display: inline
+      }
+      .colAlign {
+         text-align: center
+      }
+   </style>
+    
+   <apex:tabPanel switchType="client" selectedTab="tabdetails" 
+                  id="AccountTabPanel" tabClass="activeTab" 
+                  inactiveTabClass="inactiveTab"> 
+       
+       
+      <apex:tab label="Details" name="ContDetails" id="tabdetails">
+          <apex:detail relatedList="false" inlineEdit="true"/> 
+      </apex:tab>
+      <apex:tab label="Opportunities" name="Opportunities" 
+                id="tabOpp">
+         <apex:relatedList subject="{!Account}" 
+                           list="Opportunities"/>
+      </apex:tab>
+      
+      <apex:tab label="Open Activities" name="OpenActivities" 
+                id="tabOpenAct">
+         <apex:relatedList subject="{!Account}" 
+                           list="OpenActivities" />
+      </apex:tab>
+      <apex:tab label="Activity History" name="ActivityHistory" 
+                id="tabActivityHistory">
+         <apex:relatedList subject="{!Account}" 
+                           list="ActivityHistories" />
+      </apex:tab>
+                           
+      
+       <apex:tab label="Contracts" 
+                name="Contracts" id="tabContracts">
+         <apex:relatedList subject="{!Account}" 
+                           list="Contracts" />
+      </apex:tab>
+      <apex:tab label="Contacts" 
+                name="Contacts" id="tabContacts">
+         <apex:relatedList subject="{!Account}" 
+                           list="Contacts" />
+      </apex:tab>
+      
+       <apex:tab label="Google Docs, Notes, & Attachments" 
+                name="NotesAndAttachments" id="tabNoteAtt">
+         <apex:relatedList subject="{!account}" 
+                           list="CombinedAttachments" />
+      </apex:tab>
+      
+       <!--apex:tab label="Covered EntitiesA" 
+                name="CoveredEntityA" id="tabCoveredEntityA">
+         <apex:relatedList subject="{!Account}" 
+                           list="Cover_Entity_Pharmacy1__r" />
+      </apex:tab-->
+     
+      
+       <apex:tab label="Covered Entities" name="Covered Entity" id="tabCoveredEntity">
+           <apex:form >
+               <apex:pageBlock >
+                   <div class="pbHeader">
+                       <table border="0" cellpadding="0" cellspacing="0">
+                           <tr>
+                               <td class="pbTitle"><img src="/img/icon/custom51_100/tvCTR24.png" class="relatedListIcon" 
+                                    style="width:24px; display:block; margin-left:0;"/><h2 class="mainTitle">Covered Entities</h2></td>
+                               <td class="pbButton"><input value="New Record" class="btn" name="new" title="New Record" type="button" 
+                                                           onclick="navigateToUrl('/a00/e?CF00N63000000Je0x={!Account.Name}','RELATED_LIST','new00N63000000Je0x');"/></td>
+                           </tr>
+                       </table>
+                   </div>
+
+                   <apex:pageBlockTable value="{!CoverPharmacies}" var="pharm" rendered="{!NOT(ISNULL(CoverPharmacies))}">
+                       <apex:column headerValue="Action">
+                           <div class="colAlign">
+                               <!--a href="{!pharm.editURL}" style="color:#015BA7" class="line">Edit</a>
+                               <p style="color:gray" class="line"> | </p-->
+                               <apex:commandLink style="color:#015BA7" onclick="return confirm('Are you sure?')" 
+                                                 action="{!deletingRecord}" value="Del">
+                                   <apex:param name="phId" value="{!pharm.objId}"/>
+                                   <apex:actionSupport event="oncomlete" reRender="tabCoveredEntity"/>
+                               </apex:commandLink>
+                           </div>
+                       </apex:column>
+                       <!--apex:column headerValue="Record">
+                           <a href="/{!pharm.objId}" style="color:black">{!pharm.recordName}</a>
+                       </apex:column-->
+                       <apex:column headerValue="Cover Entity">
+                           <a href="/{!pharm.accId}" style="color:black">{!pharm.Name}</a>
+                       </apex:column>
+                       <apex:column headerValue="Overral Progress %" value="{!pharm.Overall_Progress}" />
+                       <apex:column headerValue="Type" value="{!pharm.Type}"/>
+                       <apex:column headerValue="EMR_Vendor" value="{!pharm.EMR_Vendor}"/>
+                       <apex:column headerValue="Quantity of Pharmacies" value="{!pharm.Quantity_of_Pharmacies}"/>
+                       <apex:column headerValue="Billing Country" value="{!pharm.BillingCountry}"/>
+                       <apex:column headerValue="Billing State" value="{!pharm.BillingState}"/>
+                       <apex:column headerValue="Billing City" value="{!pharm.BillingCity}"/>
+                       <apex:column headerValue="Verification Stage" value="{!pharm.Verification_Stage}"/>
+                       <apex:column headerValue="Verification Status" value="{!pharm.Verification_Status}"/>
+                       <apex:column headerValue="Last Modified Date" value="{!pharm.LastModifiedDate}"/>
+                       <apex:column headerValue="Created By">
+                           <a href="/{!pharm.userId}" style="color:black" class="line">{!pharm.userName}</a>
+                           <apex:outputText value=", {!pharm.CreatedByDate}"/>
+                       </apex:column>
+                   </apex:pageBlockTable>
+                   <apex:outputLabel value="No records to display" rendered="{!(ISNULL(CoverPharmacies))}" styleClass="noRowsHeader"></apex:outputLabel>
+               </apex:pageBlock>
+           </apex:form>
+       </apex:tab>     
+      
+      
+      
+   </apex:tabPanel>
+</apex:page>

@@ -1,0 +1,21 @@
+<apex:page controller="AddPharmacy">
+    <!-- apex:form >
+        <apex:pageblock title="Associate Opportunity to Custom Object">
+            <apex:pageMessages />
+            <apex:pageblockbuttons location="top">
+                <apex:commandbutton value="Associate" action="{!associate}" />
+                <apex:commandbutton value="Cancel" action="{!cancel}"/>
+            </apex:pageblockbuttons>
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Account Name</apex:outputLabel>
+                    <apex:outputText >{!account.Name}</apex:outputText>   
+                </apex:pageBlockSectionItem>
+              <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Pharmacy</apex:outputLabel>
+                    <apex:inputField value="{!account.Pharmacy__c}"/>
+                </apex:pageBlockSectionItem>                
+            </apex:pageBlockSection>
+        </apex:pageblock>
+    </apex:form-->
+</apex:page>

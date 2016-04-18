@@ -1,0 +1,70 @@
+<apex:page standardController="Opportunity" showHeader="true" 
+      tabStyle="Opportunity" >
+   
+    
+    
+    <style>
+      .activeTab {background-color: #236FBD; color:white; 
+         background-image:none}
+      .inactiveTab { background-color: lightgrey; color:black; 
+         background-image:none}
+   </style>
+    <apex:tabPanel switchType="client" selectedTab="tabdetails" 
+                  id="OpportunityTabPanel" tabClass="activeTab" 
+                  inactiveTabClass="inactiveTab"> 
+ 
+      <apex:tab label="Details" name="ContDetails" id="tabdetails">
+        <apex:detail relatedList="false" inlineEdit="true"/>
+        
+           
+          
+      </apex:tab>
+        
+      <apex:tab label="Open Activities" name="OpenActivities" 
+                id="tabOpenAct">
+         <apex:relatedList subject="{!Opportunity}" 
+                           list="OpenActivities" />
+      </apex:tab>
+        <apex:tab label="Activity History" name="ActivityHistory" 
+                id="tabActHis">
+         <apex:relatedList subject="{!Opportunity}" 
+                           list="ActivityHistories" />
+      </apex:tab>
+        
+      <apex:tab label="Contact Roles" name="ContactRoles" 
+                id="tabContactRoles">
+         <apex:relatedList subject="{!Opportunity}" 
+                           list="OpportunityContactRoles"/>
+      </apex:tab>
+         <apex:tab label="Partners" name="Partners" 
+                id="tabPartners">
+         <apex:relatedList subject="{!Opportunity}" 
+                           list="OpportunityPartnersFrom"/>
+      </apex:tab>
+        <apex:tab label="Competitors" name="Competitors" 
+                id="tabCompetitors">
+         <apex:relatedList subject="{!Opportunity}" 
+                           list="OpportunityCompetitors"/>
+      </apex:tab>
+         <apex:tab label="Products" name="Products" 
+                id="tabProducts">
+         <apex:relatedList subject="{!Opportunity}" 
+                           list="OpportunityLineItems"/>
+      </apex:tab>
+        
+      <apex:tab label="Google Docs, Notes, & Attachments" 
+                name="NotesAndAttachments" id="tabNoteAtt">
+         <apex:relatedList subject="{!Opportunity}" 
+                           list="CombinedAttachments"/>
+      </apex:tab>
+        
+        <apex:tab label="Stage History" name="StageHistory" 
+                id="tabStageHistory">
+         <apex:relatedList subject="{!Opportunity}" 
+                           list="OpportunityHistories"/>
+      </apex:tab>
+       
+        
+          
+   </apex:tabPanel>
+</apex:page>

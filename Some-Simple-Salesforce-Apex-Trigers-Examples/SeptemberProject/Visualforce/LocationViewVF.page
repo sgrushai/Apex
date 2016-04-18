@@ -1,0 +1,62 @@
+<apex:page standardcontroller="Location__c" extensions="RelatedControllerLoc">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ <style>
+      .bPageBlock {background-color: #236FBD; color:white; 
+         background-image:none}
+         
+         .apexp .bPageBlock.apexDefaultPageBlock .pbBody .pbSubheader {
+    border-top: 0;
+    color: #27282e;
+    background-color: transparent;
+    border-width: 2px 0 0;
+    border-top-width: 2px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-color: #ebaf59;
+    /* height: 1px; */
+    border-style: solid;
+}
+      
+ </style>   
+      <apex:pageBlock mode="detail">
+         <apex:detail subject="{!Location__c}" relatedList="false"  inlineEdit="true" >
+         
+         </apex:detail>
+    
+       
+         <apex:form >
+        
+  
+       <apex:pageBlockSection title="Primary Contact" collapsible="false">
+          <apex:outputField value="{!Location__c.Primary_Contact__c}"/>
+          <apex:outputField value="{!Location__c.Primary_Contact__r.Phone}"/>
+          <apex:outputField value="{!Location__c.Primary_Contact__r.Contact_Type__c}"/>
+          <apex:outputField value="{!Location__c.Primary_Contact__r.Email}"/>
+       </apex:pageBlockSection>
+                
+       <apex:pageBlockSection title="Principal Contact" collapsible="false">
+           <apex:outputField value="{!Location__c.Principal_Contact__c}"/>
+           <apex:outputField value="{!Location__c.Principal_Contact__r.Phone}"/>
+           <apex:outputField value="{!Location__c.Principal_Contact__r.Contact_Type__c}"/>
+           <apex:outputField value="{!Location__c.Principal_Contact__r.Email}"/>
+       </apex:pageBlockSection>
+             
+       <apex:pageBlockSection title="Second Contact" collapsible="false">
+           <apex:outputField value="{!Location__c.Second_Contact__c}"/>  
+           <apex:outputField value="{!Location__c.Second_Contact__r.Phone}"/>
+           <apex:outputField value="{!Location__c.Second_Contact__r.Contact_Type__c}"/>
+           <apex:outputField value="{!Location__c.Second_Contact__r.Email}"/>
+       </apex:pageBlockSection>
+         </apex:form>        
+</apex:pageBlock>
+        <script type="text/javascript">
+      var $j = jQuery.noConflict();
+      $j(document).ready(function() {
+      $j('.pbBottomButtons').appendTo('#j_id0_j_id2_j_id3RD+form');
+      //$j('#ep_j_id0_j_id2_j_id3').appendTo('#j_id0_j_id2_j_id3RD+form');
+      
+      });  
+  </script>
+   
+</apex:page>

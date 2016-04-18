@@ -1,0 +1,61 @@
+<apex:page standardcontroller="Location__c" extensions="RelatedControllerLoc">
+   
+    
+    
+    <apex:form >
+   <apex:pageMessages id="msgs"/>
+   <apex:pageBlock title="Location Create/Edit">
+      <apex:pageBlockSection title="Location Information">
+           <apex:inputField value="{!Location__c.Name}"/>
+           <apex:inputField value="{!Location__c.Location_ID__c}"/>
+           <apex:inputField value="{!Location__c.Address_1__c}"/>
+           <apex:inputField value="{!Location__c.Address_2__c}"/>
+           <apex:inputField value="{!Location__c.City__c}"/>
+           <apex:inputField value="{!Location__c.State__c}"/>
+           <apex:inputField value="{!Location__c.Zip__c}"/>
+           <apex:inputField value="{!Location__c.Phone__c}"/>
+           <apex:inputField value="{!Location__c.Fax__c}"/>
+           <apex:inputField value="{!Location__c.Inactive__c}"/>
+           <apex:inputField value="{!Location__c.Covered_Entity_Locatios__c}"/>
+      </apex:pageBlockSection>
+            <apex:actionRegion >
+          <apex:pageBlockSection id="continfo" title="Primary Contact">
+               <apex:inputField value="{!Location__c.Primary_Contact__c}">
+                    <apex:actionSupport event="onchange" action="{!ContactPopulated}" rerender="continfo, msgs"/>
+           </apex:inputField>
+         <apex:outputField value="{!Location__c.Primary_Contact__r.Phone}"/>
+         <apex:outputField value="{!Location__c.Primary_Contact__r.Contact_Type__c}"/>
+         <apex:outputField value="{!Location__c.Primary_Contact__r.Email}"/>
+        </apex:pageBlockSection>
+                
+                <apex:pageBlockSection id="continfo1" title="Principal Contact">
+               <apex:inputField value="{!Location__c.Principal_Contact__c}">
+                    <apex:actionSupport event="onchange" action="{!ContactPopulated}" rerender="continfo1, msgs"/>
+           </apex:inputField>
+         <apex:outputField value="{!Location__c.Principal_Contact__r.Phone}"/>
+         <apex:outputField value="{!Location__c.Principal_Contact__r.Contact_Type__c}"/>
+         <apex:outputField value="{!Location__c.Principal_Contact__r.Email}"/>
+        </apex:pageBlockSection>
+             
+                 <apex:pageBlockSection id="continfo2" title="Second Contact">
+               <apex:outputField value="{!Location__c.Second_Contact__c}">
+                    <apex:actionSupport event="onchange" action="{!ContactPopulated}" rerender="continfo2, msgs"/>
+                    <apex:inlineEditSupport disabled="false"/>
+          
+           </apex:outputField>
+         <apex:outputField value="{!Location__c.Second_Contact__r.Phone}"/>
+         <apex:outputField value="{!Location__c.Second_Contact__r.Contact_Type__c}"/>
+         <apex:outputField value="{!Location__c.Second_Contact__r.Email}"/>
+        </apex:pageBlockSection>
+                
+       </apex:actionRegion>
+
+      <apex:pageBlockButtons >
+      <apex:commandButton value="Save" action="{!save}"/>
+        <apex:commandButton value="Cancel" action="{!cancel}"/>
+        
+      </apex:pageBlockButtons>
+   </apex:pageBlock>
+  </apex:form>
+ 
+</apex:page>
