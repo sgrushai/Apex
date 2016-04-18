@@ -1,0 +1,381 @@
+<apex:page standardController="dealer__Deal__c" extensions="CarDealCustomController">
+    <div id="contentLoaded">
+    <apex:form >
+        <apex:sectionheader title="New Sale"></apex:sectionheader>
+        
+        <apex:pageblock title="New Sale">
+            <apex:pageblockbuttons >
+                <apex:commandbutton action="{!save}" value="Pre-Sale" disabled="true"></apex:commandbutton>
+                <apex:commandbutton action="{!save}" value="Save"></apex:commandbutton>
+                <apex:commandbutton action="{!cancel}" value="Cancel"></apex:commandbutton>
+                <input type="button" onclick="change()" value="Fill the form" class="btn"/>
+            </apex:pageblockbuttons>
+            <apex:pageblocksection showHeader="false" columns="4">
+                <apex:inputfield styleClass="Site_address__c" value="{!dealer__Deal__c.Site_address__c}" required="true" onchange="changeUserPass()"></apex:inputfield>
+                
+                <th class="labelCol vfLabelColTextWrap  first  last " scope="row"><label for="user">User</label></th>
+                <td class="dataCol  first  last " colspan="2"><input id="user" name="user" type="text"/></td>
+        
+                <th class="labelCol vfLabelColTextWrap  first  last " scope="row"/>
+                <td class="dataCol  first  last " colspan="3"/>
+        
+                <th class="labelCol vfLabelColTextWrap  first  last " scope="row"><label for="pass">Password</label></th>
+                <td class="dataCol  first  last " colspan="4"><input id="pass" name="pass" type="text"/></td>
+                
+            </apex:pageblocksection>
+            <apex:pageblocksection title="Information" columns="2">
+                <apex:pageBlockSection columns="1">
+                    <apex:inputfield styleClass="Name__c" value="{!dealer__Deal__c.Name}" required="true"></apex:inputfield>
+                    <apex:inputfield styleClass="dealer__Deal_ID__c" value="{!dealer__Deal__c.dealer__Deal_ID__c}" required="true"></apex:inputfield>
+                    <apex:inputfield styleClass="dealer__Deal_Type__c" value="{!dealer__Deal__c.dealer__Deal_Type__c}" required="true"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.dealer__Buyer__c}" required="true"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.dealer__Buyer_Contact__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Affiliate__c}" required="true"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Rep__c}" required="true"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Bidder__c}" required="true"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Proxy_Dealer__c}" required="true"></apex:inputfield>
+                    <apex:inputfield styleClass="dealer__VIN__c" value="{!dealer__Deal__c.dealer__VIN__c}" required="true"></apex:inputfield>
+                    <apex:inputfield styleClass="dealer__Year__c" value="{!dealer__Deal__c.dealer__Year__c}" required="true"></apex:inputfield>
+                    <apex:inputfield styleClass="dealer__Make__c" value="{!dealer__Deal__c.dealer__Make__c}" required="true"></apex:inputfield>
+                    <apex:inputfield styleClass="dealer__Model__c" value="{!dealer__Deal__c.dealer__Model__c}" required="true"></apex:inputfield>
+                    <apex:inputfield styleClass="dealer__Mileage__c" value="{!dealer__Deal__c.dealer__Mileage__c}" required="true"></apex:inputfield>
+                    <apex:inputfield styleClass="Mileage_Type__c" value="{!dealer__Deal__c.Mileage_Type__c}" required="true"></apex:inputfield>
+                    <apex:inputfield styleClass="Title_State__c" value="{!dealer__Deal__c.Title_State__c}" required="true"></apex:inputfield>
+                    <apex:inputfield styleClass="Title_Type__c" value="{!dealer__Deal__c.Title_Type__c}" required="true"></apex:inputfield>
+                    <apex:inputfield styleClass="Auction__c" id="auc" value="{!dealer__Deal__c.Auction__c}" required="true"></apex:inputfield>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection columns="1">
+                    <apex:inputfield styleClass="Bid_Request_Date__c" value="{!dealer__Deal__c.Bid_Request_Date__c}" required="true"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Deposit_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Purchase_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Payment_Received_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Paid_Auction__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Picked_Up_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Delivery_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Title_Received_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.NMVTIS_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Title_Sent_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Tracking_Number__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Bill_of_Sale_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Sales_Complete_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.QB_Check_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Refund_Request_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Refund_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.dealer__Status__c}"></apex:inputfield>
+                </apex:pageBlockSection>
+            </apex:pageblocksection>
+            
+            <apex:pageblocksection title="Financials" columns="2">
+                <apex:pageBlockSection columns="1">
+                    <apex:inputfield value="{!dealer__Deal__c.Bid_Request_Amount__c}"></apex:inputfield>
+                </apex:pageBlockSection>
+            </apex:pageblocksection>
+            <apex:pageblocksection columns="2">
+                <apex:pageBlockSection columns="1">
+                    <apex:inputfield styleClass="Sales_Price__c" value="{!dealer__Deal__c.Sales_Price__c}" required="true"></apex:inputfield>
+                    <apex:inputfield styleClass="Standard_Buyer_Fee__c" value="{!dealer__Deal__c.Standard_Buyer_Fee__c}" required="true"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Deposit__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Refund__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Shipping_Fee__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Transaction_Fee__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Late_Fee__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Storage_Fee__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Mailing_Fee__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Export_Fee__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Documentation_Fee__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Adjustment__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Customer_Payment__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Transfer_From__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Transfer_To__c}"></apex:inputfield>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection columns="1">
+                    <apex:inputfield value="{!dealer__Deal__c.Price_Notes__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Buyer_Fee_Notes__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Deposit_Notes__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Refund_Notes__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Shipping_Notes__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Transaction_Notes__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Late_Fee_Notes__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Storage_Fee_Notes__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Mailing_Notes__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Export_Notes__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Doc_Fee_Notes__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Adjustment_Notes__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Payment_Notes__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Transfer_From_Notes__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Transfer_To_Notes__c}"></apex:inputfield>
+                </apex:pageBlockSection>
+            </apex:pageblocksection>
+                        
+             <apex:pageblocksection title="Document Financials" columns="2">
+                    <apex:pageBlockSection columns="1">
+                    <apex:pageBlockSection > <apex:pageBlockSectionItem > </apex:pageBlockSectionItem> </apex:pageBlockSection>
+                    <apex:inputfield value="{!dealer__Deal__c.Buyer_Account_Doc2__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.BUYER_S_ORDER_TERMS_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Sales_Price_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Trade_in_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Standard_Buyer_Fee_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Deposit_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Refund_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Shipping_Fee_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Transaction_Fee_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Late_Fee_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Storage_Fee_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Mailing_Fee_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Export_Fee_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Documentation_Fee_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Adjustment_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Customer_Payment_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Transfer_From_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Transfer_To_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Sales_Tax_Doc_perc__c}"></apex:inputfield>
+                    
+                </apex:pageBlockSection>
+                <apex:pageBlockSection columns="1">
+                    <apex:inputfield value="{!dealer__Deal__c.Sale_Date_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Proxy_Dealer_Doc2__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Lienholder__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Price_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Trade_in_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Buyer_Fee_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Deposit_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Refund_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Shipping_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Transaction_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Late_Fee_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Storage_Fee_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Mailing_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Export_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Doc_Fee_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Adjustment_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Payment_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Transfer_From_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Transfer_To_Notes_Doc__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Sales_Tax_Doc_perc_Notes__c}"></apex:inputfield>
+                </apex:pageBlockSection>
+            </apex:pageblocksection>
+                    
+            <apex:pageblocksection title="Transportation Trip A" columns="2">
+                <apex:pageBlockSection columns="1">
+                    <apex:inputfield value="{!dealer__Deal__c.Origin_Location_A__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Destination_Location_A__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.A_Posted_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Carrier_A__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.A_Shipping_Cost__c}"></apex:inputfield>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection columns="1">
+                    <apex:inputfield value="{!dealer__Deal__c.A_Dispatched_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.A_Due_To_From_Carrier__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.A_Paid_Carrier_Date__c}"></apex:inputfield>
+                </apex:pageBlockSection>
+            </apex:pageblocksection>
+            
+            <apex:pageblocksection title="Transportation Trip B" columns="2">
+                <apex:pageBlockSection columns="1">
+                    <apex:inputfield value="{!dealer__Deal__c.Origin_Location_B__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Destination_Location_B__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Posted_Date_B__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Carrier_B__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Shipping_Cost_B__c}"></apex:inputfield>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection columns="1">
+                    <apex:inputfield value="{!dealer__Deal__c.Dispatched_Date_B__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Pick_Up_Date_B__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Delivery_Date_B__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Due_To_From_Carrier_B__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Paid_Carrier_Date_B__c}"></apex:inputfield>
+                </apex:pageBlockSection>
+            </apex:pageblocksection>
+            
+            <apex:pageblocksection title="Export" columns="2">
+                <apex:pageBlockSection columns="1">
+                    <apex:inputfield value="{!dealer__Deal__c.Origin_Port__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Destination_Port__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Exporter__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Receiver__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Loaded_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Container_Number__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.ETA_Date__c}"></apex:inputfield>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection columns="1">
+                    <apex:inputfield value="{!dealer__Deal__c.Export_Cost__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Paid_Exporter_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Release_Date__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Export_Title_Received__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Export_Title_Sent__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Export_Tracing_Number__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.Export_Reported__c}"></apex:inputfield>
+                </apex:pageBlockSection>
+            </apex:pageblocksection>
+            
+            <apex:pageblocksection title="Commissions" columns="2">
+                <apex:pageBlockSection columns="1">
+                    <apex:inputfield value="{!dealer__Deal__c.MA_Percentage__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.SR_Percentage__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.PD_Percentage__c}"></apex:inputfield>
+                    <apex:inputfield value="{!dealer__Deal__c.LB_Percentage__c}"></apex:inputfield>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection columns="1">
+                </apex:pageBlockSection>
+            </apex:pageblocksection>
+        </apex:pageblock>
+        <div id="pictures">
+            <apex:inputfield styleClass="Pic_1" value="{!dealer__Deal__c.Pictures_Doc__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_2" value="{!dealer__Deal__c.Pictures_Doc_2__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_3" value="{!dealer__Deal__c.Pictures_Doc_3__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_4" value="{!dealer__Deal__c.Pictures_Doc_4__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_5" value="{!dealer__Deal__c.Pictures_Doc_5__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_6" value="{!dealer__Deal__c.Pictures_Doc_6__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_7" value="{!dealer__Deal__c.Pictures_Doc_7__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_8" value="{!dealer__Deal__c.Pictures_Doc_8__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_9" value="{!dealer__Deal__c.Pictures_Doc_9__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_10" value="{!dealer__Deal__c.Pictures_Doc_10__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_11" value="{!dealer__Deal__c.Pictures_Doc_11__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_12" value="{!dealer__Deal__c.Pictures_Doc_12__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_13" value="{!dealer__Deal__c.Pictures_Doc_13__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_14" value="{!dealer__Deal__c.Pictures_Doc_14__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_15" value="{!dealer__Deal__c.Pictures_Doc_15__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_16" value="{!dealer__Deal__c.Pictures_Doc_16__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_17" value="{!dealer__Deal__c.Pictures_Doc_17__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_18" value="{!dealer__Deal__c.Pictures_Doc_18__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_19" value="{!dealer__Deal__c.Pictures_Doc_19__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_20" value="{!dealer__Deal__c.Pictures_Doc_20__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_21" value="{!dealer__Deal__c.Pictures_Doc_21__c}"></apex:inputfield>
+            <apex:inputfield styleClass="Pic_22" value="{!dealer__Deal__c.Pictures_Doc_22__c}"></apex:inputfield>
+        </div>
+    </apex:form>
+    </div>
+    
+    <div id="contentLoading" style="display:none;position:absolute;top:5%;left:40%;z-index: 100;">
+        <div style="text-align: center;">
+            <img src="{!$Resource.loadingAnimation}" alt="Loading graphic" />
+        </div>
+    </div>
+    
+    <div id="TB_overlay"></div>
+
+    <style>
+    #TB_overlay {
+        background-color: #000;
+        height: 100%;
+        left: 0;
+        opacity: 0.15;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+        display: none;
+    }
+        
+    #pictures {
+        display: none;
+    }
+    </style>
+    
+    <script src="/soap/ajax/30.0/connection.js" type="text/javascript"></script>
+    <script src="/soap/ajax/30.0/apex.js" type="text/javascript"></script>
+    <script language="javascript">
+    function change() {
+        var addr = document.getElementsByClassName("Site_address__c")[0].value;
+        var dealID = document.getElementsByClassName("dealer__Deal_ID__c")[0].value;
+		if(addr == "") {
+        	alert('Please choose marketplace!');
+            return;
+        }
+        if(dealID == "") {
+        	alert('Please enter Deal_ID!');
+            return;
+        }
+        var user = document.getElementById("user").value;
+        var pass = document.getElementById("pass").value;
+        document.getElementById('contentLoading').style.display = 'block';
+        document.getElementById('TB_overlay').style.display = 'block';
+        CarDealCustomController.fill(dealID, addr, user, pass, function(res, event){
+            if(event.status) {
+                if(res.ErrorMessages__c != '' && res.ErrorMessages__c != null) {
+                    alert(res.ErrorMessages__c);
+                } else {
+                    document.getElementsByClassName("Name__c")[0].value = res.Name;
+                    document.getElementsByClassName("dealer__Deal_Type__c")[0].value = res.dealer__Deal_Type__c;
+                    document.getElementsByClassName("dealer__VIN__c")[0].value = res.dealer__VIN__c;
+                    document.getElementsByClassName("dealer__Year__c")[0].value = res.dealer__Year__c;
+                    document.getElementsByClassName("dealer__Make__c")[0].value = res.dealer__Make__c;
+                    document.getElementsByClassName("dealer__Model__c")[0].value = res.dealer__Model__c;
+                    document.getElementsByClassName("dealer__Mileage__c")[0].value = res.dealer__Mileage__c;
+                    document.getElementsByClassName("Mileage_Type__c")[0].value = res.Mileage_Type__c;
+                    document.getElementsByClassName("Title_State__c")[0].value = res.Title_State__c;
+                    //document.getElementsByClassName("Title_Type__c")[0].value = res.Title_Type__c;
+                    
+                    document.getElementsByClassName("Auction__c")[0].value = res.Tracking_Number__c;
+                    var myDate = new Date(res.Bid_Request_Date__c);
+                    var options = {
+                        month: 'numeric',
+                        day: 'numeric',
+                        year: 'numeric'
+                    };
+                    document.getElementsByClassName("Bid_Request_Date__c")[0].value = myDate.toLocaleString("en-US", options);
+                    document.getElementsByClassName("Sales_Price__c")[0].value = res.Sales_Price__c;
+                    document.getElementsByClassName("Standard_Buyer_Fee__c")[0].value = res.Standard_Buyer_Fee__c;
+                    
+                    var tmpValue = res.Pictures_Doc__c.split("amp;");
+                    document.getElementsByClassName("Pic_1")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_2__c.split("amp;");
+                    document.getElementsByClassName("Pic_2")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_3__c.split("amp;");
+                    document.getElementsByClassName("Pic_3")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_4__c.split("amp;");
+                    document.getElementsByClassName("Pic_4")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_5__c.split("amp;");
+                    document.getElementsByClassName("Pic_5")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_6__c.split("amp;");
+                    document.getElementsByClassName("Pic_6")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_7__c.split("amp;");
+                    document.getElementsByClassName("Pic_7")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_8__c.split("amp;");
+                    document.getElementsByClassName("Pic_8")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_9__c.split("amp;");
+                    document.getElementsByClassName("Pic_9")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_10__c.split("amp;");
+                    document.getElementsByClassName("Pic_10")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_11__c.split("amp;");
+                    document.getElementsByClassName("Pic_11")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_12__c.split("amp;");
+                    document.getElementsByClassName("Pic_12")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_13__c.split("amp;");
+                    document.getElementsByClassName("Pic_13")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_14__c.split("amp;");
+                    document.getElementsByClassName("Pic_14")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_15__c.split("amp;");
+                    document.getElementsByClassName("Pic_15")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_16__c.split("amp;");
+                    document.getElementsByClassName("Pic_16")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_17__c.split("amp;");
+                    document.getElementsByClassName("Pic_17")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_18__c.split("amp;");
+                    document.getElementsByClassName("Pic_18")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_19__c.split("amp;");
+                    document.getElementsByClassName("Pic_19")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_20__c.split("amp;");
+                    document.getElementsByClassName("Pic_20")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_21__c.split("amp;");
+                    document.getElementsByClassName("Pic_21")[0].value = tmpValue.join("");
+                    tmpValue = res.Pictures_Doc_22__c.split("amp;");
+                    document.getElementsByClassName("Pic_22")[0].value = tmpValue.join("");
+                }
+            }
+            document.getElementById('contentLoading').style.display = 'none';
+            document.getElementById('TB_overlay').style.display = 'none';
+        });
+    }
+    
+    function changeUserPass() {
+        var addr = document.getElementsByClassName("Site_address__c")[0].value;
+        CarDealCustomController.auth(addr, function(res, event){
+            if(event.status) {
+                document.getElementById("user").value = res.Login__c;
+                document.getElementById("pass").value = res.Password__c;
+            }
+        });
+    }
+    </script> 
+</apex:page>

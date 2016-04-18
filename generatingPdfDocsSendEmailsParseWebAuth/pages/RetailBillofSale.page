@@ -1,0 +1,127 @@
+<apex:page showHeader="false" renderAs="pdf" standardController="dealer__Deal__c" extensions="sendEmail_RBofS"  applyBodyTag="false">
+
+<head>
+
+     <style>
+@page{
+margin:0.1in 0.3in 0.75in 0.3in;
+@bottom-center {
+content: element(footer);
+
+}
+ }
+ div.footer {
+display: block;
+padding: 0px;
+position: running(footer);
+}
+ 
+ body {
+                font-family: Verdana, Geneva, sans-serif;
+                font-size: 11px;
+                font-weight: bold;
+ }
+  table{
+            padding-top:0px;
+            margin:0;
+            border-spacing: 1px;
+            }
+
+
+  .fin{
+  border-top:1px solid black;
+  border-left:1px solid black;
+  border-bottom:1px solid black;
+  border-right: 1px solid black;
+  border-collapse: collapse;border-color: black;
+  font-size: 12px;
+  margin-top:15px;
+    padding-top:15px;
+  }
+  p.fin{
+            padding-top:8px;
+            margin-top:8px;
+           padding-bottom:0px;
+           margin-bottom:0px;
+  }
+    table.tb{
+            padding-top:8px;
+            margin:0;
+            border-spacing: 1px;
+            }
+             td {
+           padding:0px;
+padding-right:5px;
+margin:0;
+}
+ .main{
+    padding-left:8px;
+    padding-top:8px;
+    padding-bottom:8px;
+
+    }
+     .main2{
+     margin-left:8px;
+    padding-left:8px;
+    padding-top:0px;
+    padding-bottom:0px;
+    margin:0;
+       
+    }
+
+    .doc{
+    border-right: 1px solid black; 
+    border-bottom: 1px solid #cc3300; 
+margin-left:8px;
+padding-right:10px;
+    }
+     .doc0{
+
+padding-left:8px;
+padding-right:8px;
+color:#cc3300;
+ 
+    }
+    .doc1{
+padding-left:2px;
+padding-right:9px;
+
+  
+    }
+        .doc2{
+    border-right: 1px solid black; 
+    padding-left:8px;
+padding-right:8px;
+      }
+
+p{
+text-align: justify;
+font-size: 10.5px;
+margin-top:3px;
+}
+p.un_justify{
+text-align: left;
+margin-top:3px;
+margin-bottom:0px;
+
+font-size: 10.5px;
+}
+ .sec_header{
+text-decoration: underline;
+    }
+        .value{
+    color: #cc3300;
+    }
+            .value_un{
+    color: #cc3300;
+    text-decoration: underline;
+    }
+
+        </style>
+    
+    </head>
+
+<body>
+<c:sendEmail_RBofS dealer__Deal__c="{!Deal}" />
+ </body>
+</apex:page>

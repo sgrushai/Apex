@@ -1,0 +1,231 @@
+<apex:component access="global" allowDML="true">
+<apex:attribute name="dealer__Deal__c" description="" type="dealer__Deal__c" />
+<head>
+<style>
+  body {
+       font-family: Verdana, Geneva, sans-serif;
+       font-size: 12px;
+       line-height: 1.5;
+       }
+  table{
+        padding-top:0px;  
+        border-spacing: 1px;
+        padding-bottom:0px;
+        margin:0;
+        }
+  .pbSubsection 
+        {
+        border: 2px solid #CFEEF8;
+        border-radius: 7px;
+        background-color: white;
+        max-width: 635px;
+        }
+  .pbSubheader h3 
+        {
+        color: #564F4F;
+        background-color: #CFEEF8;
+        }
+  .pbSubheader 
+        {
+        color: #CFEEF8;
+        background-color: #CFEEF8;
+        max-width: 635px;
+        }
+   #maxw { max-width: 610px; }
+</style>
+    
+    </head>
+
+    <body>
+ 
+<b><span class="value"><apex:outputField value="{!dealer__Deal__c.dealer__Year__c}"/>&nbsp;  <apex:outputField value="{!dealer__Deal__c.dealer__Make__c}"/>&nbsp;  <apex:outputField value="{!dealer__Deal__c.dealer__Model__c}"/>&nbsp; <apex:outputField value="{!dealer__Deal__c.dealer__VIN__c}"/> 
+<apex:outputPanel rendered="{! If(dealer__Deal__c.Sales_Price_Doc__c !=null,true,false) }">
+<apex:outputPanel rendered="{! If(dealer__Deal__c.Sales_Price_Doc__c !=null||dealer__Deal__c.Sales_Price_Doc__c >0 ,true,false) }">
+           <span><apex:outputField value="{!dealer__Deal__c.Sales_Price_Doc__c}"/></span>
+   </apex:outputPanel>     
+</apex:outputPanel>
+</span>    </b>
+    <hr style="height:1px; visibility:hidden;padding:0px;margin:0px;" />
+    <span style="color:red;">[TEXT FROM BODY FIELD]</span>
+    <hr style="height:5px; visibility:hidden;" />
+<div id="maxw">
+<table width="100%" cellspacing="0" style="padding-top: 3px;border-top: 1px solid gray;border-collapse:collapse;">
+    <tr>
+        <td width="60%" valign="top" style="border-bottom: 1px solid gray;">
+        <a href="/apex/SomeImage?ImgID=0&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc__c}"   alt="Image 1" width="100%"/></a>               
+        </td>
+        <td width="40%" valign="top" style="padding-left:7px;border-bottom: 1px solid gray;">
+            <span style="font-size:11px;"> Vehicle Specifications</span>
+             <table width="100%" cellspacing="0" style="padding-top: 0px;border-collapse:collapse;"> 
+                 <tr>
+                     <td width="30%" style="border-top: 1px solid gray;">
+                    <b> VIN: </b>
+                     </td>
+                     <td width="70%" style="border-top: 1px solid gray;">
+                     <apex:outputField value="{!dealer__Deal__c.dealer__VIN__c}"/>
+                     </td>                     
+                  </tr>
+                <tr>
+                     <td width="30%" style="border-top: 1px solid gray;">
+                    <b> Mileage: </b>
+                     </td>
+                     <td width="70%" style="border-top: 1px solid gray;">
+                     <apex:outputField value="{!dealer__Deal__c.dealer__Mileage__c}"/>&nbsp; <apex:outputField value="{!dealer__Deal__c.Mileage_Type__c}"/>
+                     </td>                     
+                  </tr>
+               <tr>
+                     <td width="30%" style="border-top: 1px solid gray;">
+                    <b> Title State: </b>
+                     </td>
+                     <td width="70%" style="border-top: 1px solid gray;">
+                     <apex:outputField value="{!dealer__Deal__c.Title_State__c}"/>
+                     </td>                     
+                  </tr>
+               <tr>
+                     <td width="30%" style="border-top: 1px solid gray;">
+                    <b> Title Type: </b>
+                     </td>
+                     <td width="70%" style="border-top: 1px solid gray;">
+                     <apex:outputField value="{!dealer__Deal__c.Title_Type__c}"/>
+                     </td>                     
+                  </tr>
+               <tr>
+                     <td width="30%" style="border-top: 1px solid gray;border-bottom: 1px solid gray;">
+                    <b> Location: </b>
+                     </td>
+                     <td width="70%" style="border-top: 1px solid gray;border-bottom: 1px solid gray;">
+                     <apex:outputField value="{!dealer__Deal__c.Auction__r.BillingCity}"/>&nbsp; <apex:outputField value="{!dealer__Deal__c.Auction__r.BillingState}"/>
+                     </td>                     
+                  </tr>
+             </table>          
+        </td>
+    </tr>
+</table> 
+<br/>     
+<table width="100%" cellspacing="0" style="border-collapse:collapse;">
+  <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_2__c !='' ,true,false) }">
+    <tr>
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-bottom:5px">
+        <a href="/apex/SomeImage?ImgID=2&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_2__c}"   alt="Image 2" width="100%"/>  </a>            
+        </td>
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-bottom:5px">
+       <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_3__c !='' ,true,false) }">
+        <a href="/apex/SomeImage?ImgID=3&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_3__c}"   alt="Image 3" width="100%"/></a>              
+        </apex:outputPanel>  
+        </td>
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-bottom:5px">
+        <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_4__c !='' ,true,false) }">
+        <a href="/apex/SomeImage?ImgID=4&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_4__c}"   alt="Image 4" width="100%"/></a>              
+        </apex:outputPanel> 
+        </td>
+    </tr>
+ </apex:outputPanel>   
+ <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_5__c !='' ,true,false) }">
+    <tr>
+    
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <a href="/apex/SomeImage?ImgID=5&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_5__c}"   alt="Image 5" width="100%"/></a>              
+        </td>
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_6__c !='' ,true,false) }">
+        <a href="/apex/SomeImage?ImgID=6&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_6__c}"   alt="Image 6" width="100%"/></a>              
+        </apex:outputPanel>
+        </td>
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_7__c !='' ,true,false) }">
+        <a href="/apex/SomeImage?ImgID=7&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_7__c}"   alt="Image 7" width="100%"/></a>              
+        </apex:outputPanel>
+        </td>
+    </tr>
+</apex:outputPanel>
+<apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_8__c !='' ,true,false) }">
+    <tr>
+       <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <a href="/apex/SomeImage?ImgID=8&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_8__c}"   alt="Image 8" width="100%"/></a>              
+        </td>
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_9__c !='' ,true,false) }">
+        <a href="/apex/SomeImage?ImgID=9&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_9__c}"   alt="Image 9" width="100%"/></a>              
+        </apex:outputPanel>
+        </td>
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_10__c !='' ,true,false) }">
+        <a href="/apex/SomeImage?ImgID=10&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_10__c}"   alt="Image 10" width="100%"/></a>              
+        </apex:outputPanel>
+       </td>
+    </tr>
+</apex:outputPanel>
+<apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_11__c !='' ,true,false) }">
+    <tr>
+       <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <a href="/apex/SomeImage?ImgID=11&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_11__c}"   alt="Image 11" width="100%"/></a>              
+        </td>
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_12__c !='' ,true,false) }">
+        <a href="/apex/SomeImage?ImgID=12&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_12__c}"   alt="Image 12" width="100%"/></a>              
+        </apex:outputPanel>
+        </td>
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_13__c !='' ,true,false) }">
+        <a href="/apex/SomeImage?ImgID=13&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_13__c}"   alt="Image 13" width="100%"/></a>              
+        </apex:outputPanel>
+       </td>
+    </tr>
+</apex:outputPanel> 
+<apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_14__c !='' ,true,false) }">
+    <tr>
+       <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <a href="/apex/SomeImage?ImgID=14&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_14__c}"   alt="Image 14" width="100%"/></a>              
+        </td>
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_15__c !='' ,true,false) }">
+        <a href="/apex/SomeImage?ImgID=15&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_15__c}"   alt="Image 15" width="100%"/></a>              
+        </apex:outputPanel>
+        </td>
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_16__c !='' ,true,false) }">
+        <a href="/apex/SomeImage?ImgID=16&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_16__c}"   alt="Image 16" width="100%"/></a>              
+        </apex:outputPanel>
+       </td>
+    </tr>
+</apex:outputPanel> 
+<apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_17__c !='' ,true,false) }">
+    <tr>
+       <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <a href="/apex/SomeImage?ImgID=17&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_17__c}"   alt="Image 17" width="100%"/></a>              
+        </td>
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_18__c !='' ,true,false) }">
+        <a href="/apex/SomeImage?ImgID=18&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_18__c}"   alt="Image 18" width="100%"/></a>              
+        </apex:outputPanel>
+        </td>
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_19__c !='' ,true,false) }">
+        <a href="/apex/SomeImage?ImgID=19&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_19__c}"   alt="Image 19" width="100%"/></a>              
+        </apex:outputPanel>
+       </td>
+    </tr>
+</apex:outputPanel> 
+<apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_20__c !='' ,true,false) }">
+    <tr>
+       <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <a href="/apex/SomeImage?ImgID=20&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_20__c}"   alt="Image 20" width="100%"/></a>              
+        </td>
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_21__c !='' ,true,false) }">
+        <a href="/apex/SomeImage?ImgID=21&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_21__c}"   alt="Image 21" width="100%"/></a>              
+        </apex:outputPanel>
+        </td>
+        <td class="main" width="33%" valign="top" style="border-bottom: 1px solid gray;padding-right:10px;padding-top:5px">
+        <apex:outputPanel rendered="{! If(dealer__Deal__c.Pictures_Doc_22__c !='' ,true,false) }">
+        <a href="/apex/SomeImage?ImgID=22&id={!dealer__Deal__c.id}"><img src="{!dealer__Deal__c.Pictures_Doc_22__c}"   alt="Image 22" width="100%"/></a>              
+        </apex:outputPanel>
+       </td>
+    </tr>
+</apex:outputPanel> 
+</table>
+</div>     
+    
+</body>
+
+</apex:component>

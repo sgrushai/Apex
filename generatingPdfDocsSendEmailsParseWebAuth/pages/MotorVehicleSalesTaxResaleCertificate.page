@@ -1,0 +1,54 @@
+<apex:page showHeader="false" renderAs="PDF" standardController="dealer__Deal__c" extensions="sendEmail_MVSTRC"  applyBodyTag="false">
+
+<head>
+
+     <style>
+@page{
+margin:0.6in 0.6in 0.3in 0.5in;
+@bottom-center {
+content: element(footer);
+
+}
+ }
+  
+ body {
+                font-family: Verdana, Geneva, sans-serif;
+font-size: 11.0px;
+ }
+table{
+line-height: 2.0;
+
+}
+p{
+line-height: 1.2;
+}
+
+        p.header{
+                                font-size: 16px;
+                font-weight: bold;
+                
+                }
+
+        span.cls_004{
+   font-family:"Arial Unicode MS" "serif";
+   font-size:28.0px;font-weight:bold;
+margin-right:0px;
+margin-left:0px;
+padding:0px;
+   }
+    p.cls_004{
+   
+   font-size:14.0px;font-weight:bold;
+margin-right:0px;
+margin-left:0px;
+padding:0px;
+line-height: 0.8;
+   }
+        </style>
+    
+    </head>
+
+<body>
+<c:sendEmail_MVSTRC dealer__Deal__c="{!Deal}" />
+ </body>
+</apex:page>

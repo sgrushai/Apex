@@ -1,0 +1,295 @@
+<apex:component access="global" allowDML="true" controller="sendEmail_SA">
+<apex:attribute name="dealer__Deal__c" description="" type="dealer__Deal__c" />
+<head>
+<style>
+
+
+            body {
+                font-family: Verdana, Geneva, sans-serif;
+                font-size: 12px;
+                font-weight: bold;
+            }
+            table{
+            padding-top:0px;  
+            border-spacing: 1px;
+            padding-bottom:0px;
+            margin:0;
+            }
+             table.tb{
+            padding-top:8px;
+            margin:0;
+            border-spacing: 1px;
+            }
+        
+           td {
+           padding-top:0px;
+           padding-bottom:0px;
+padding-right:5px;
+margin-top:0;
+margin-bottom:0;
+}
+
+    .main{
+    padding-left:8px;
+    padding-top:8px;
+    padding-bottom:8px;
+
+    }
+     .main2{
+     margin-left:8px;
+    padding-left:8px;
+    padding-top:0px;
+    padding-bottom:0px;
+    margin:0;
+     text-align:center;
+   
+    }
+    
+
+   .doc{
+    border-right: 1px solid black; 
+    border-bottom: 1px solid #cc3300; 
+margin-left:8px;
+padding-right:10px;
+    }
+     
+    .doc1{
+padding-left:2px;
+padding-right:9px;
+    }
+        .doc2{
+    border-right: 1px solid black; 
+    padding-left:8px;
+padding-right:8px;
+  
+    }
+ .sec_header{
+text-decoration: underline;
+    }
+        .value{
+    color: #cc3300;
+    }
+        td.value{
+    color: #cc3300;
+    }
+              .value_un{
+    color: #cc3300;
+    text-decoration: underline;
+    }  
+   
+        .pbSubsection {
+    border: 2px solid #CFEEF8;
+    border-radius: 7px;
+    background-color: white;
+   
+}
+ .pbSubheader h3 {
+    color: #564F4F;
+    background-color: #CFEEF8;
+}
+ .pbSubheader {
+    color: #CFEEF8;
+    background-color: #CFEEF8;
+}
+td.doc0{
+padding-left:8px;
+padding-right:8px;
+border-bottom: 1px solid #cc3300; 
+color: #cc3300;
+     }
+     p{
+text-align: justify;
+font-size: 10.5px;
+margin-top:3px;
+}
+p.un_justify{
+text-align: left;
+margin-top:3px;
+}
+.fin{
+  font-size: 12px;
+   margin-bottom:15px;
+    margin-top:5px;
+    padding-top:0px;
+    margin-top:0px;
+  }
+
+
+        </style>
+    
+    </head>
+
+    <body>
+ 
+
+       <div class="footer" align="center">
+<apex:image value="{!DealerImsComLogo}" width="177" height="46" />
+          </div> 
+    
+    <table width="100%">
+           <tr>
+                <td width="34%">
+          <apex:outputPanel rendered="{!IF(NOT(ISNULL(LogoProxyDealerDoc)), true, false)}">
+         <apex:image value="{!LogoProxyDealerDoc}" width="200" height="52"/>
+        </apex:outputpanel>
+              
+                    
+                </td>
+                <td width="30%" style="text-align:center;vertical-align: middle;">
+                    <h2 style="padding-left:5px;">Buyer’s Salvage Acknowledgement </h2>
+                </td>                
+                <td width="36%" style="text-align:center">
+                    <table>
+                    <tr><td>&nbsp;</td> </tr>
+                    <tr><td><br/><br/></td> </tr>
+                        <tr>
+                            <td><strong>Sale Date:</strong></td>
+                            <td class="value"><apex:outputField value="{!dealer__Deal__c.Sale_Date_Doc__c}"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Deal #:</strong></td>
+                            <td class="value"><apex:outputField value="{!dealer__Deal__c.dealer__Deal_ID__c}"/></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+    </table>
+           <table width="100%" cellspacing="0" style="padding-top: 3px;">
+             <tr>
+                <td class="main" width="50%" valign="top" style="border-top:1px solid black;border-left:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;border-collapse: collapse;border-color: black;">
+                  <span class="sec_header">BUYER</span><br />
+                   NAME: <span class="value"><apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.dealer__FirstName__c}"/>&nbsp; <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.dealer__LastName__c}"/></span><br />
+                   COMPANY: <span class="value"><apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__c}"/></span><br />
+                   ADDRESS: <span class="value"><apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingStreet}"/>,&nbsp;
+                   <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingCity}"/>,&nbsp;
+                   <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingState}"/>,&nbsp;
+                   <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingPostalCode}"/>
+                   </span><br />
+                   COUNTRY: <span class="value"><apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingCountry}"/></span><br />
+                   PHONE: <span class="value"><apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.Phone}"/></span><br />
+                   EMAIL: <span class="value"><apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.dealer__PersonEmail__c}"/></span><br />
+                   BUYER #: <span class="value"><apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.AccountNumber}"/></span><br />
+                </td>
+                <td class="main" width="50%" valign="top" style=" border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;border-collapse: collapse;border-color: black;">
+                    <span class="sec_header">SELLER</span><br />
+                    
+                   SALESPERSON: <span class="value"><apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.dealer__FirstName__c}"/>&nbsp; <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.dealer__LastName__c}"/></span><br />
+                   COMPANY: <span class="value"><apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__c}"/></span><br />
+                   ADDRESS: <span class="value"><apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.BillingStreet}"/>,&nbsp;
+                   <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.BillingCity}"/>,&nbsp;
+                   <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.BillingState}"/>,&nbsp;
+                   <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.BillingPostalCode}"/>
+                   </span><br />
+                   COUNTRY: <span class="value"><apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.BillingCountry}"/></span><br />
+                   PHONE: <span class="value"><apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.Phone}"/></span><br />
+                    EMAIL: <span class="value"><apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.dealer__PersonEmail__c}"/></span><br />
+                   DEALER #: <span class="value"><apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.AccountNumber}"/></span><br />
+                </td>
+            </tr>
+        </table>
+        
+        <table class="tb" width="100%" cellspacing="0">
+             <tr>
+                <td class="main" width="100%" valign="top" style=" border-top:1px solid black;border-left:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;border-collapse: collapse;border-color: black;">
+                  <span class="sec_header">VEHICLE INFORMATION</span><br />
+                   YEAR: <span class="value"><apex:outputField value="{!dealer__Deal__c.dealer__Year__c}"/></span><br />
+                   MAKE: <span class="value"><apex:outputField value="{!dealer__Deal__c.dealer__Make__c}"/></span><br />
+                   MODEL: <span class="value"><apex:outputField value="{!dealer__Deal__c.dealer__Model__c}"/></span><br />
+                   VIN: <span class="value"><apex:outputField value="{!dealer__Deal__c.dealer__VIN__c}"/></span><br />
+                   ODOMETER: <span class="value"><apex:outputField value="{!dealer__Deal__c.dealer__Mileage__c}"/></span><br />
+                   COLOR:<br />
+                   BODY STYLE:
+                </td>
+               
+            </tr>
+        </table>
+
+<table  class="tb" width="100%" cellspacing="0" >
+    <tr>
+        <td class="main" width="100%" valign="top" style="border-left:1px solid black; border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;border-collapse: collapse;border-color: black;">
+            <span class="sec_header">SALVAGE HISTORY ACKNOWLEDGEMENT</span><br />
+            <p class="un_justify">
+I,​​ <span class="value_un"><apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.dealer__FirstName__c}"/>&nbsp; <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.dealer__LastName__c}"/></span>​​, certify that I was informed about salvage history of the vehicle I am purchasing above prior to the sale. 
+I understand that the above vehicle has a TITLE STATE:​​ <span class="value_un">​​<apex:outputField value="{!dealer__Deal__c.Title_State__c}"/></span>, TITLE TYPE: <span class="value_un">​​<apex:outputField value="{!dealer__Deal__c.Title_Type__c}"/></span>. 
+I hereby acknowledge that TITLE I will receive may be issued in the state other than my state of residence. 
+The title BRAND/TYPE shall be similar to the BRAND/TYPE that was in the initial advertisement.
+I also acknowledge that seller is not responsible for any unannounced cosmetic, mechanical or any other damage. 
+I further understand that seller CAN NOT make any representations and WILL NOT assume any liability on mileage corrections, discrepancies, alterations, or the speedometer replacements while not in seller&#39;s possession.
+</p>
+<hr style="height:1px; visibility:hidden;" />
+        </td>
+    </tr>
+</table>  
+   
+<div style="page-break-before: avoid">
+<table  class="tb" width="100%" cellspacing="0">
+    <tr>
+        <td class="main" width="50%" valign="top" style="padding-top: 0px;border-top:1px solid black;border-left:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;border-collapse: collapse;border-color: black;">
+           <table  class="tb" width="100%" cellspacing="0" >
+            <tr>
+               <td width="40%" valign="top">
+BUYER PRINTED NAME:
+            </td>
+            <td width="60%" class="doc0" valign="top" style="border-bottom: 1px solid #cc3300;">
+<span class="value"><apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.dealer__FirstName__c}"/>&nbsp; <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.dealer__LastName__c}"/></span>
+            </td>
+            </tr>
+             <tr>
+               <td width="40%" valign="top">
+            </td>
+            <td width="60%" valign="top">
+&nbsp;(Full Name or Company Name)
+            </td>
+            </tr>
+          </table>  
+<p>
+UNDER PENALTIES OF PERJURY, I​​ <span class="value_un"><apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.dealer__FirstName__c}"/>&nbsp; <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.dealer__LastName__c}"/></span> ​​DECLARE THAT I HAVE READ THE FOREGOING STATEMENTS AND THE FACTS STATED HEREIN ARE TRUE.
+ </p>
+
+SIGNATURE: x ___________________________________<br/>
+DATE: x_________________________________________
+        </td>
+        
+        <td class="main" width="50%" valign="top" style="padding-top: 0px;border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;border-collapse: collapse;border-color: black;">
+            <table  class="tb" width="100%" cellspacing="0" >
+            <tr>
+               <td width="25%" valign="top">
+                    ACCEPTED BY:
+            </td>
+            <td width="75%" class="doc0" valign="top" style="border-bottom: 1px solid #cc3300;">
+                <span class="value"><apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__c}"/></span>
+            </td>
+            </tr>
+             <tr>
+               <td width="25%" valign="top">
+            </td>
+            <td width="75%" valign="top">
+                &nbsp;&nbsp;(Dealer Name)
+            </td>
+            </tr>
+                        <tr>
+               <td width="25%" valign="top">
+                REVIEWED BY:
+            </td>
+            <td width="75%" class="doc0" valign="top" style="border-bottom: 1px solid #cc3300;">
+                 <span class="value"><apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.dealer__FirstName__c}"/>&nbsp; <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.dealer__LastName__c}"/></span>
+            </td>
+            </tr>
+             <tr>
+               <td width="25%" valign="top">
+            </td>
+            <td width="75%" valign="top">
+                &nbsp;&nbsp;(Dealer Representative)
+            </td>
+            </tr>
+          </table>  
+
+         DATE: <span class="value_un"><apex:outputField value="{!dealer__Deal__c.Sale_Date_Doc__c}"/></span>         
+        </td>
+    </tr>
+</table>      
+  </div>
+        
+    
+</body>
+</apex:component>

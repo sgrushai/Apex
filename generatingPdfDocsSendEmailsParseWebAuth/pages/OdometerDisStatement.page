@@ -1,0 +1,50 @@
+<apex:page showHeader="false" renderAs="PDF" standardController="dealer__Deal__c" extensions="sendEmail_ODS"  applyBodyTag="false">
+
+<head>
+
+     <style>
+@page{
+margin:0.5in 0.6in 0.2in 0.5in;
+@bottom-center {
+content: element(footer);
+
+}
+ }
+  
+ body {
+                font-family: Verdana, Geneva, sans-serif;
+font-size: 13.5px;
+ }
+
+        p.header{
+                                font-size: 24px;
+                font-weight: bold;
+                text-align: center;
+                }
+                p.main{
+        font-size: 17px;
+        text-align: justify;
+        }  
+                  p.main2{
+          padding-top:0px; 
+          margin-top:0px;       
+        font-size: 17px;
+        text-align: center;
+        font-weight:lighter;
+        }  
+        
+        span.check{
+        font-family:"Arial Unicode MS" "serif";
+   font-size:21.0px;
+        }
+        span.warn{
+        font-size: 12px;
+        }
+        </style>
+    
+    </head>
+
+<body>
+<c:sendEmail_ODS dealer__Deal__c="{!Deal}" />
+ </body>
+</apex:page>

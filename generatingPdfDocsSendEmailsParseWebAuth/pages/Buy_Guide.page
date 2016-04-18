@@ -1,0 +1,156 @@
+<apex:page showHeader="false" renderAs="PDF" standardController="dealer__Deal__c" 
+extensions="sendEmail_BG" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false">
+        <head>
+        <style>
+
+    table.cls_t {
+    padding-left: 20px;
+       
+    }
+    table.cls_t2 {
+    margin-right: 40px;
+    padding-right: 40px;
+    margin-left: 20px;
+    border-bottom: 2px solid black;  
+    border-top: 2px solid black; 
+    } 
+    td.cls_t2 {
+        border-right: 2px solid black;
+    border-collapse: collapse;
+    }
+     th.cls_t3 {
+padding-top:7px;
+margin-top:7px;
+font-size:18px;
+    }
+         th.cls_t4 {
+padding-top:1px;
+font-size:18px;
+    }
+    tr{
+    margin:0;
+    padding:0px;
+    }       
+  td {
+padding:0px;
+font-size:14px;
+padding-right:5px;
+margin:0;
+margin-bottom:0px;
+padding-top:0px;
+
+text-align:left;
+
+padding-top:0px;
+padding-bottom:0px;
+margin-top:0px;
+}
+th {
+font-size:14px;
+font-weight:normal;
+padding:0px;
+padding-right:15px;
+margin:0;
+margin-bottom:0px;
+
+text-align:left;
+
+}
+
+
+@page{
+margin:0.25in;
+ 
+}
+div.cls_002{border-bottom: 2px solid black; /* Линия снизу текста */
+margin-right:20px;
+margin-left:20px;
+font-family:Arial,serif;
+   }
+   div.cls_003{border-top: 2px solid black;
+   font-family:"Arial","serif";
+margin-right:20px;
+margin-left:20px;
+   }
+
+   span.cls_004{
+   font-family:"Arial Unicode MS" "serif";
+   font-size:48.0px;font-weight:bold;
+margin-right:0px;
+margin-left:0px;
+padding:0px;
+   }
+   span.cls_005{border-top: 2px solid black;
+   font-family:"Arial Unicode MS" "serif";
+   font-size:16.0px;font-weight:bold;
+margin-right:2px;
+margin-left:0px;
+padding:0px;
+   }
+   span.cls_006{
+   text-align: justify;
+   }
+   span.cls_007{
+   margin-right:20px;
+margin-left:20px;
+   padding-right:20px;
+padding-left:20px;
+   }
+   span.headline{
+font-size:14.0px;
+padding-top:5px;
+margin-top:5px;
+   }
+
+   p{
+   margin-top:5px;
+   margin-right:20px;
+margin-left:20px;
+font-size:14.5px;
+}
+ p.p_head{
+font-weight:bold;
+padding-top:5px;
+ font-size:13px;
+margin-bottom:0px;
+
+}
+ p.p_body{
+ font-size:13px;
+padding-top:0px;
+padding-bottom:0px;
+padding-left:20px;
+margin-bottom: 0px;
+margin-top: 0px;
+}
+hr.hr_l{
+margin:0;
+margin-right:5px;
+}
+hr.hr_2{
+margin:0;
+margin-right:5px;
+width:58%;
+}
+hr.hr_3{
+padding-left:15px;
+margin-left:15px;
+width:100%;
+}
+hr.hr_4{
+margin:0;
+margin-right:5px;
+width:100%;
+}
+
+        </style>
+    </head>
+  
+
+<body>
+
+ <c:sendEmail_Buy_Guide dealer__Deal__c="{!Deal}" />
+ 
+    </body>
+   
+</apex:page>

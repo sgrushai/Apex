@@ -1,0 +1,5 @@
+<apex:page showHeader="false">
+Hello World<br />
+This is the Call2Bid Portal...
+<hr />
+</apex:page>

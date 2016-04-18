@@ -1,0 +1,219 @@
+<apex:component access="global" allowDML="true" controller="sendEmail_ODS">
+<apex:attribute name="dealer__Deal__c" description="" type="dealer__Deal__c" />
+<head>
+    <style>
+           body {
+                font-family: Verdana, Geneva, sans-serif;
+                font-size: 12px;
+                }
+                
+               
+        p.header{
+                                font-size: 22px;
+                font-weight: bold;
+                text-align: center;
+                }
+        p.main{
+        font-size: 16px;
+        text-align: justify;
+        }       
+          p.main2{
+        font-size: 16px;
+        text-align: center;
+        font-weight:lighter;
+        }          
+                
+          span.check{
+        font-family:"Arial Unicode MS" "serif";
+        font-size:14.0px;
+
+        }
+            
+                
+                
+                .pbSubsection {
+    border: 2px solid #CFEEF8;
+    border-radius: 7px;
+    background-color: white;
+   
+}
+ .pbSubheader h3 {
+    color: #564F4F;
+    background-color: #CFEEF8;
+}
+ .pbSubheader {
+    color: #CFEEF8;
+    background-color: #CFEEF8;
+}
+    </style>
+</head>
+
+<body>
+ 
+ <p class="header">ODOMETER DISCLOSURE<br/>STATEMENT</p>
+ <p class="main">Federal and State Law require that you state the mileage in connection with the transfer of ownership. Failure to complete or providing a false statement may result in fines and/or imprisonment. This form <STRONG>may not be used</STRONG> in conjunction with title transfer documents, which comply with federal and state odometer disclosure requirements such as Texas Certificate of Titles issued on or after April 29, 1990.</p>
+ <p class="main2">VEHICLE DESCRIPTION</p>      
+  <table width="100%"  style="border-collapse: collapse; border: 1px solid black;">
+  <tr>
+    <td style="border-collapse: collapse; border: 1px solid black; padding-left:8px;">Year<br/>
+    <apex:outputField value="{!dealer__Deal__c.dealer__Year__c}"/>
+    </td>
+    <td style="border-collapse: collapse; border: 1px solid black;padding-left:8px;">Make<br/>
+    <apex:outputField value="{!dealer__Deal__c.dealer__Make__c}"/>
+    </td>
+    <td style="border-collapse: collapse; border: 1px solid black;padding-left:8px;">Body Style<br/>
+    <br/>
+    </td>
+    <td style="border-collapse: collapse; border: 1px solid black;padding-left:8px;">Model<br/>
+    <apex:outputField value="{!dealer__Deal__c.dealer__Model__c}"/>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4" style="border-collapse: collapse; border: 1px solid black;padding-left:8px;">Vehicle Identification number<br/>
+    <apex:outputField value="{!dealer__Deal__c.dealer__VIN__c}"/>
+    </td>
+  </tr>
+</table> 
+<hr style="height:17px; visibility:hidden;" />
+I, &nbsp;<span style="text-decoration: underline;"><apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.dealer__FirstName__c}"/>&nbsp;<apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.dealer__LastName__c}"/></span>,  certify to the best of my knowledge that the odometer reading is the actual mileage of the vehicle described above unless one of the following statements is checked:
+<br/><br/>
+<table width="100%">
+    <tr>
+        <td width="35%">
+            <table width="90%"  style="border-collapse: collapse; border: 1px solid black;">
+              <tr>
+                <td valign="middle" style="border-collapse: collapse; border: 1px solid black;border-right:0; padding-left:8px;padding-top:11px;padding-bottom:11px;">
+    Odometer<br/> 
+    Reading
+                </td>
+                
+               <td valign="middle" style="font-size: 16px;border-collapse: collapse; border: 1px solid black; border-left:0;border-right:0;padding-left:8px;padding-top:11px;padding-bottom:11px;">
+<apex:outputField value="{!dealer__Deal__c.dealer__Mileage__c}"/><br/> 
+                </td>
+                <td valign="middle" style="border-collapse: collapse; border: 1px solid black;border-left:0; padding-left:8px;padding-top:11px;padding-bottom:11px;">
+(No Tenths)<br/> 
+                </td>
+              </tr>
+            </table> 
+        </td>
+        <td width="65%">
+       <apex:outputPanel rendered="{! If(dealer__Deal__c.Mileage_Type__c =='Exceeds Mechanical Limits' ,true,false) }">
+           <span class="check">☒&nbsp;</span>
+        </apex:outputPanel>
+               <apex:outputPanel rendered="{! If(dealer__Deal__c.Mileage_Type__c !='Exceeds Mechanical Limits' ,true,false) }">
+           <span class="check">☐&nbsp;</span>
+        </apex:outputPanel>
+        1. The mileage stated is in excess of its mechanical limits.<br/> 
+         <apex:outputPanel rendered="{! If(dealer__Deal__c.Mileage_Type__c =='Not Actual' ,true,false) }">
+           <span class="check">☒&nbsp;</span>
+        </apex:outputPanel>
+               <apex:outputPanel rendered="{! If(dealer__Deal__c.Mileage_Type__c !='Not Actual' ,true,false) }">
+           <span class="check">☐&nbsp;</span>
+        </apex:outputPanel>
+        2. The odometer reading is not the actual mileage.<br/> 
+        <STRONG>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WARNING – ODOMETER DISCREPANCY.</STRONG>
+        </td>
+    </tr>
+</table>
+<br/>
+ <table width="100%" style="border-collapse: collapse;">
+  <tr >
+    <td width="20%" style="text-align: center;">
+    <apex:outputField value="{!dealer__Deal__c.Sale_Date_Doc__c}"/>
+    </td>
+    <td width="40%"></td>
+    <td width="40%"></td>  
+  </tr> 
+  <tr>
+    <td width="20%" style="text-align: center;border-top: 1px solid black;">Date of<br/>Statement</td>
+    <td width="40%" style="text-align: center;border-top: 1px solid black;">Signature of Seller/Agent<br/></td>
+    <td width="40%" style="text-align: center;border-top: 1px solid black;">Printed Name (Same as Signature)<br/></td>  
+  </tr> 
+</table> 
+ <table width="100%" style="border-collapse: collapse;">
+ <tr > 
+ <td width="100%" style="text-align: center;"> <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.dealer__FirstName__c}"/>&nbsp;<apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.dealer__LastName__c}"/> </td> </tr> <tr> <td width="100%" style="text-align: center;border-top: 1px solid black;">If titled in a firm’s name, print the firm’s name on the line above.
+ </td> 
+ </tr>
+</table>
+<br/>
+<table width="100%" style="border-collapse: collapse;">
+  <tr >
+    <td width="40%" style="text-align: center;"><apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.BillingStreet}"/></td>
+    <td width="30%" style="text-align: center;"><apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.BillingCity}"/></td>
+    <td width="15%" style="text-align: center;"><apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.BillingState}"/></td>  
+    <td width="15%" style="text-align: center;"><apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.BillingPostalCode}"/></td> 
+  </tr> 
+  <tr>
+    <td width="40%" style="text-align: center;border-top: 1px solid black;">Street Address</td>
+    <td width="30%" style="text-align: center;border-top: 1px solid black;">City</td>
+    <td width="15%" style="text-align: center;border-top: 1px solid black;">State</td>  
+    <td width="15%" style="text-align: center;border-top: 1px solid black;">Zip Code</td> 
+  </tr> 
+</table> 
+<hr style="height:10px; visibility:hidden;" />
+ <p class="main2">ACKNOWLEDGMENT OF ODOMETER DISCLOSURE BY BUYER/AGENT</p> 
+ 
+<table width="100%"  style="border-collapse: collapse; border: 1px solid black; padding-bottom:8px;margin-bottom:8px;">
+  <tr>
+    <td colspan="4" width="100%" style="border-collapse: collapse; border: 1px solid black;border-bottom:0px; padding-left:8px;">I am aware of the above odometer certification made by the seller/agent.</td>
+  </tr>
+  
+    <tr>
+    <td colspan="2" width="20%" style="border-collapse: collapse; border: 1px solid black; border-right:0px;border-top:0px;text-align: center;">
+    <apex:outputField value="{!dealer__Deal__c.Sale_Date_Doc__c}"/>
+    </td>
+        <td  width="40%" style="border-collapse: collapse; border: 1px solid black;border-left:0px;border-right:0px;border-top:0px;text-align: center;"><br/>
+
+    </td>
+        <td  width="40%" style="border-collapse: collapse; border: 1px solid black;border-left:0px;border-top:0px;text-align: center;">
+        <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__c}"/>
+    </td>
+  </tr>
+  
+    <tr>
+    <td colspan="2" width="20%" style="border-collapse: collapse; border: 1px solid black; border-right:0px;border-bottom:0px;text-align: center;">Date of<br/>
+Statement
+    </td>
+        <td  width="40%" style="border-collapse: collapse; border: 1px solid black;border-left:0px;border-right:0px;border-bottom:0px;text-align: center;vertical-align: top;">Signature of Buyer/Agent
+    </td>
+        <td  width="40%" style="border-collapse: collapse; border: 1px solid black;border-left:0px;border-bottom:0px;text-align: center;vertical-align: top;">Printed Name (Same as Signature)
+    </td>
+  </tr>
+  
+  <tr>
+    <td  colspan="4" width="100%" style="border-collapse: collapse; border: 1px solid black;border-top:0px;text-align: center;">
+        <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__c}"/>
+    </td>
+  </tr>
+   <tr>
+    <td colspan="4" width="100%" style="border-collapse: collapse; border: 1px solid black; border-bottom:0px;text-align: center;">If purchased by a firm, print the firm’s name on the line above.
+    </td>
+  </tr>
+  <tr>
+      <td  colspan="4" width="100%" style="padding:0;border-left:1px solid black;border-right:1px solid black;border-left:1px solid black;border-bottom:1px solid black;">
+  <table width="100%" style="border-collapse: collapse;padding:0;margin:0; ">
+  <tr >
+    <td width="40%" style="text-align: center;"><apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingStreet}"/></td>
+    <td width="30%" style="text-align: center;"><apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingCity}"/></td>
+    <td width="15%" style="text-align: center;"><apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingState}"/></td>  
+    <td width="15%" style="text-align: center;"><apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingPostalCode}"/></td> 
+  </tr> 
+  <tr>
+    <td width="40%" style="text-align: center;border-top: 1px solid black;">Street Address</td>
+    <td width="30%" style="text-align: center;border-top: 1px solid black;">City</td>
+    <td width="15%" style="text-align: center;border-top: 1px solid black;">State</td>  
+    <td width="15%" style="text-align: center;border-top: 1px solid black;">Zip Code</td> 
+  </tr> 
+  </table>
+   </td>
+  </tr>
+</table> 
+
+<span class="warn"><b><i>WARNING: TRANSPORTATION CODE, §501.155, PROVIDES THAT FALSIFYING INFORMATION ON ANY REQUIRED STATEMENT OR APPLICATION IS A THIRD-DEGREE FELONY.</i></b></span>
+<hr style="height:9px; visibility:hidden;" />
+<div class="footer" align="center">
+<apex:image value="{!DealerImsComLogo}" width="177" height="46" />
+          </div> 
+</body>
+</apex:component>

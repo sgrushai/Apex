@@ -1,0 +1,119 @@
+<apex:page controller="sendEmail_RVP" sidebar="false" showHeader="false" >
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" />
+  
+<head>
+   <style>
+     
+textarea {
+    height: 64px;
+}
+.bPageBlock {
+    border-top: 1px solid #F8F8F8;
+}
+.pbSubsection {
+    border: 2px solid #CFEEF8;
+    border-radius: 7px;
+    background-color: white;
+   
+}
+.pbSubheader h3 {
+    color: #564F4F;
+    background-color: #CFEEF8;
+}
+.pbSubheader {
+    color: #CFEEF8;
+    background-color: #CFEEF8;
+}
+#btn{
+    display: inline-block;
+    width: 50px;
+    height: 12px;
+    padding: 4px 3px;
+    text-decoration: none;
+}
+ 
+    </style>
+    
+    <title>Retail Vehicle Preview {!Deal.dealer__Year__c} {!Deal.dealer__Make__c}  {!Deal.dealer__Model__c} {!Deal.dealer__VIN__c}</title>
+
+</head>
+
+
+<apex:form >
+ 
+   <apex:pageBlock id="pb" title="Send Email"> 
+         <apex:pageblockbuttons >
+        
+         <apex:commandButton id="Send" value="Send Email" action="{!send}" onclick="return validateSubject()" /> 
+         <a href="/apex/RetailVehiclePreview?id={!Deal.Id}" class="btn" id="btn" download="Retail Vehicle Preview {!Deal.dealer__Year__c} {!Deal.dealer__Make__c}  {!Deal.dealer__Model__c} {!Deal.dealer__VIN__c}">Save PDF</a>
+         <apex:commandButton value="Print" onclick="printFrame();return false;"/>
+         </apex:pageblockbuttons>
+
+         <div style="width: 100%">  
+         <div style="width: 200px; float: left; display: inline-block; ">
+        
+         <apex:outputLabel value="Email" for="Email"/>:<br />   
+         <div class = "requiredInput">  
+         <div class = "requiredBlock"></div>
+         <apex:inputText value="{!emailaddr}" id="Email"  label="Please fill in the email field" maxlength="120"/>
+            
+         </div>
+         <br /><br /><br />
+
+         </div>
+         <div style=" float: left;display: inline-block; text-align: left;width: 200px;">
+       
+         <apex:outputLabel value="Body" for="Body"/>:<br />     
+         <apex:inputTextarea value="{!body}" id="Body"  rows="4" cols="70"/>           
+
+         </div>
+         </div>
+         <br/><br/><br/><br/><br/><br/><br/>
+         <apex:pageBlockSection columns="1" showHeader="true" title="Email preview">
+             <iframe height="600px" id="printable" name="PDF" src="/apex/RetailVehiclePreview?id={!Deal.Id}" width="98%"></iframe>
+         </apex:pageBlockSection>
+                          
+    </apex:pageBlock>
+   
+</apex:form>
+
+<script type="text/javascript">
+function printFrame() {
+    var iframe = document.frames ? window.frames.frames["printable"] :document.getElementById("printable");
+    var ifWin = iframe.contentWindow || iframe;
+    try {
+        ifWin.focus();
+        ifWin.print();
+    }
+    catch(e) {
+        window.print(false);
+    }
+}
+
+var j$ = jQuery.noConflict();
+function validateSubject(){
+    if (j$("input[id$='Email']").val() == ''){
+        alert('Please fill in the email field');  
+        return false;
+    } else{
+        var strText = j$("input[id$='Email']").val();
+        var count = 0;
+        var n=j$("input[id$='Email']").val().length;
+        for(var i=0; i < n ; i++){
+            if(strText.charAt(i)=="@")
+        {
+        count++;
+        }
+    }
+if(count>10){
+    alert('You can send only 10 emails at once.');
+    return false;
+    } else{
+        return true;             
+    }
+ }
+}
+
+</script>
+
+</apex:page>

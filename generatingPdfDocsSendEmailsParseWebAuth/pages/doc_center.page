@@ -1,0 +1,142 @@
+<apex:page controller="doc_center" >
+<head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.js"></script>
+  <script type="text/javascript">
+     
+        $(document).ready(function(){          
+           $("input[id$='state\\:0']").change(function(){
+                  $("#v1").hide();
+                  $("#v2").hide();
+                  $("#v3").hide();
+                  $("#v4").hide();
+                  $("#v5").hide();
+                  $("#v6").hide();
+                  $("#v7").hide();
+                  $("#v8").hide();
+                  $("#v0").show();
+            });
+            $("input[id$='state\\:1']").change(function(){
+                  $("#v0").hide(); 
+                  $("#v2").hide();
+                  $("#v3").hide();
+                  $("#v4").hide();
+                  $("#v5").hide();
+                  $("#v6").hide();
+                  $("#v7").hide(); 
+                  $("#v8").hide(); 
+                  $("#v1").show(); 
+            });  
+            $("input[id$='state\\:2']").change(function(){
+                  $("#v0").hide(); 
+                  $("#v1").hide();
+                  $("#v3").hide();
+                  $("#v4").hide();
+                  $("#v5").hide();
+                  $("#v6").hide();
+                  $("#v7").hide(); 
+                  $("#v8").hide(); 
+                  $("#v2").show(); 
+            });  
+            $("input[id$='state\\:3']").change(function(){
+                  $("#v0").hide(); 
+                  $("#v1").hide();
+                  $("#v2").hide();
+                  $("#v4").hide();
+                  $("#v5").hide();
+                  $("#v6").hide();
+                  $("#v7").hide(); 
+                  $("#v8").hide(); 
+                  $("#v3").show(); 
+            });     
+            $("input[id$='state\\:4']").change(function(){
+                  $("#v0").hide(); 
+                  $("#v1").hide();
+                  $("#v2").hide();
+                  $("#v3").hide();
+                  $("#v5").hide();
+                  $("#v6").hide();
+                  $("#v7").hide(); 
+                  $("#v8").hide(); 
+                  $("#v4").show(); 
+            }); 
+            $("input[id$='state\\:5']").change(function(){
+                  $("#v0").hide(); 
+                  $("#v1").hide();
+                  $("#v2").hide();
+                  $("#v3").hide();
+                  $("#v4").hide();
+                  $("#v6").hide();
+                  $("#v7").hide(); 
+                  $("#v8").hide(); 
+                  $("#v5").show(); 
+            });
+            $("input[id$='state\\:6']").change(function(){
+                  $("#v0").hide(); 
+                  $("#v1").hide();
+                  $("#v2").hide();
+                  $("#v3").hide();
+                  $("#v4").hide();
+                  $("#v5").hide();
+                  $("#v7").hide(); 
+                  $("#v8").hide(); 
+                  $("#v6").show(); 
+            });
+            $("input[id$='state\\:7']").change(function(){
+                  $("#v0").hide(); 
+                  $("#v1").hide();
+                  $("#v2").hide();
+                  $("#v3").hide();
+                  $("#v4").hide();
+                  $("#v5").hide();
+                  $("#v6").hide();
+                  $("#v8").hide(); 
+                  $("#v7").show(); 
+            });
+            $("input[id$='state\\:8']").change(function(){
+                  $("#v0").hide(); 
+                  $("#v1").hide();
+                  $("#v2").hide();
+                  $("#v3").hide();
+                  $("#v4").hide();
+                  $("#v5").hide();
+                  $("#v6").hide();
+                  $("#v7").hide(); 
+                  $("#v8").show(); 
+            });
+        });        
+     </script>
+</head>
+
+<apex:form >
+<br/><br/>
+<table style="padding:0">
+<tr>
+<td style="padding:0">
+<apex:selectRadio layout="pageDirection" title="state" required="true" id="state" style="width:305px;padding:0">
+                    <apex:selectOption itemLabel="Export Bill of Sale" itemValue="0"/>
+                    <apex:selectOption itemLabel="Wholesale Bill of Sale" itemValue="1"/>
+                    <apex:selectOption itemLabel="Retail Bill of Sale" itemValue="2"/>
+                    <apex:selectOption itemLabel="Salvage Aknowledgement" itemValue="3"/>
+                    <apex:selectOption itemLabel="Buyer's Guide" itemValue="4"/>
+                    <apex:selectOption itemLabel="Motor Vehicle Sales Tax Exemption Certificate (TX)" itemValue="5"/>
+                    <apex:selectOption itemLabel="Motor Vehicle Sales Tax Resale Certificate (TX)" itemValue="6"/>
+                    <apex:selectOption itemLabel="Odometer Disclosure Statement" itemValue="7"/>
+                    <apex:selectOption itemLabel="Retail Vehicle Preview" itemValue="8"/>
+</apex:selectRadio>
+</td>
+<td>
+<div id="v0" style="display:none"><iframe height="870px" id="0" name="PDF" src="/apex/sendEmail_ExBofS?id={!id}" width="680px" ></iframe></div>
+<div id="v1" style="display:none"><iframe height="870px" id="1" name="PDF" src="/apex/sendEmail_WBofS?id={!id}" width="680px" ></iframe></div>
+<div id="v2" style="display:none"><iframe height="870px" id="2" name="PDF" src="/apex/sendEmail_RbofS?id={!id}" width="680px" ></iframe></div>
+<div id="v3" style="display:none"><iframe height="870px" id="3" name="PDF" src="/apex/sendEmail_SA?id={!id}" width="680px" ></iframe></div>
+<div id="v4" style="display:none"><iframe height="870px" id="4" name="PDF" src="/apex/sendEmail_Buy_Guide?id={!id}" width="680px" ></iframe></div>
+<div id="v5" style="display:none"><iframe height="870px" id="5" name="PDF" src="/apex/sendEmail_MVSTEC?id={!id}" width="680px" ></iframe></div>
+<div id="v6" style="display:none"><iframe height="870px" id="6" name="PDF" src="/apex/sendEmail_MVSTRC?id={!id}" width="680px" ></iframe></div>
+<div id="v7" style="display:none"><iframe height="870px" id="7" name="PDF" src="/apex/sendEmail_ODS?id={!id}" width="680px" ></iframe></div>
+<div id="v8" style="display:none"><iframe height="870px" id="8" name="PDF" src="/apex/sendEmail_RVP?id={!id}" width="680px" ></iframe></div>
+
+</td>
+</tr>
+</table>
+</apex:form>
+</apex:page>

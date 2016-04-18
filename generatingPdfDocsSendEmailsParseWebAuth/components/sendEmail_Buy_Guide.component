@@ -1,0 +1,586 @@
+<apex:component access="global" allowDML="true" controller="sendEmail_BG">
+<apex:attribute name="dealer__Deal__c" description="" type="dealer__Deal__c" />
+
+<html>
+<head>
+        <style>
+            body {
+                font-family: Verdana, Geneva, sans-serif;
+                font-size: 12px;
+                 
+            }
+            
+ table.cls_t {
+    padding-left: 20px;
+    }
+  table.cls_t2 {
+    margin-right: 40px;
+    padding-right: 40px;
+    margin-left: 20px;
+    border-bottom: 2px solid black;  
+    border-top: 2px solid black; 
+    } 
+    td.cls_t2 {
+        border-right: 2px solid black;
+    border-collapse: collapse;
+    }
+     th.cls_t3 {
+padding-top:7px;
+margin-top:7px;
+font-size:18px;
+    }
+         th.cls_t4 {
+padding-top:1px;
+font-size:18px;
+    }   
+    tr{
+    margin:0;
+    padding:0px;
+    }       
+  td {
+padding:0px;
+font-size:12px;
+padding-right:5px;
+margin:0;
+margin-bottom:0px;
+padding-top:0px;
+text-align:left;
+padding-top:0px;
+padding-bottom:0px;
+margin-top:0px;
+}
+th {
+font-size:14px;
+font-weight:normal;
+padding:0px;
+padding-right:15px;
+margin:0;
+margin-bottom:0px;
+text-align:left;
+}
+
+    
+            .pbSubsection {
+    border: 2px solid #CFEEF8;
+    border-radius: 7px;
+    background-color: white;
+   
+}
+ .pbSubheader h3 {
+    color: #564F4F;
+    background-color: #CFEEF8;
+}
+ .pbSubheader {
+    color: #CFEEF8;
+    background-color: #CFEEF8;
+}
+div.cls_002{border-bottom: 2px solid black; /* Линия снизу текста */
+margin-right:20px;
+margin-left:20px;
+font-family:Arial,serif;
+   }
+   div.cls_003{border-top: 2px solid black;
+   font-family:"Arial","serif";
+margin-right:20px;
+margin-left:20px;
+
+   }
+   span.cls_004{border-top: 2px solid black;
+   font-family:"Arial Unicode MS" "serif";
+   font-size:48.0px;font-weight:bold;
+margin-right:0px;
+margin-left:0px;
+padding:0px;
+   }
+       span.cls_005{border-top: 2px solid black;
+   font-family:"Arial Unicode MS" "serif";
+   font-size:16.0px;font-weight:bold;
+margin-right:2px;
+margin-left:0px;
+padding:0px;
+   }
+   span.cls_006{
+   text-align: justify;
+
+   }
+   span.cls_007{
+   margin-right:20px;
+margin-left:20px;
+   padding-right:20px;
+padding-left:20px;
+   }
+   span.headline{
+font-size:14.0px;
+padding-top:5px;
+margin-top:5px;
+   }
+
+   p{
+   margin-top:5px;
+   margin-right:20px;
+margin-left:20px;
+font-size:14.5px;
+}
+ p.p_head{
+font-weight:bold;
+padding-top:5px;
+ font-size:13px;
+margin-bottom:0px;
+
+}
+ p.p_body{
+ font-size:13px;
+padding-top:0px;
+padding-bottom:0px;
+padding-left:20px;
+margin-bottom: 0px;
+margin-top: 0px;
+}
+hr.hr_l{
+margin:0;
+margin-right:5px;
+}
+hr.hr_2{
+margin:0;
+margin-right:5px;
+width:58%;
+}
+hr.hr_3{
+padding-left:15px;
+margin-left:15px;
+width:100%;
+}
+hr.hr_4{
+margin:0;
+margin-right:5px;
+width:100%;
+}
+
+ </style>
+
+    
+    </head>
+    <body>
+
+
+<div class="cls_c" style="border-style:solid;border:1px solid black; overflow:hidden">
+<br/><br/><br/>
+<div align="center" class="cls_002" style="font-family:Arial,serif; font-size:42.0px;font-weight:bold;"><span class="cls_002">BUYERS GUIDE</span></div>
+<p> <STRONG>IMPORTANT:</STRONG> Spoken promises are difficult to enforce. Ask the dealer to put all promises in writing. Keep this form.</p>
+
+ <table class="cls_t" width="100%" style="text-align:center;margin-top:15px;" cellspacing="0">
+            <tr valign="top">
+                <th width="30%">
+                 <apex:outputField value="{!dealer__Deal__c.dealer__Make__c}"/>
+                 <hr class="hr_l"></hr>
+                
+                </th>
+                <th width="25%">
+                <apex:outputField value="{!dealer__Deal__c.dealer__Model__c}"/>
+                 <hr class="hr_l"></hr>
+                
+                </th> 
+                <th width="15%">
+             <apex:outputField value="{!dealer__Deal__c.dealer__Year__c}"/>
+                   <hr class="hr_l"></hr>
+                </th>  
+                <th width="20%">
+                    <apex:outputField value="{!dealer__Deal__c.dealer__VIN__c}"/>
+                     <hr class="hr_l"></hr>
+                </th>  
+            </tr>
+            <tr>
+                         
+                <td width="30%">VEHICLE MAKE</td>
+                <td width="25%">MODEL</td>
+                <td width="15%">YEAR</td>
+                <td width="20%">VIN</td>
+            </tr>
+        </table>
+        <table class="cls_t" width="100%" style="text-align:center;margin-top:15px;padding-bottom:15px;" cellspacing="0">
+            <tr valign="top">
+                <th width="50%">
+                 <apex:outputField value="{!dealer__Deal__c.dealer__Deal_ID__c}"/>
+                 <hr width="50%" class="hr_2"></hr>
+                   </th>
+            </tr>
+            <tr>
+                <td width="50%">DEALER STOCK NUMBER (OPTIONAL)</td>
+            </tr>
+        </table>
+       <br />
+<p> <STRONG>WARRANTIES FOR THIS VEHICLE:</STRONG></p>
+<div align="left" class="cls_003" style="font-size:42.0px;font-weight:bold;">
+<span class="cls_004" style="border-top: 0px;">☒</span>
+AS IS - NO WARRANTY
+</div>
+<p> <STRONG>YOU WILL PAY ALL COSTS FOR ANY REPAIRS. </STRONG>This dealer assumes no responsibility for any repairs regardless
+of any oral statements about the vehicle.</p>
+<div align="left" class="cls_003" style="font-size:42.0px;font-weight:bold;">
+<span class="cls_004" style="border-top: 0px;">☐</span>
+WARRANTY
+</div>
+
+
+<table class="cls_t" valign="top" >
+<tr valign="top">
+<td  valign="top" width="11%">
+ <span class="cls_005" style="border-top: 0px;">☐&nbsp;</span>
+ <span class="cls_006" style="border-top: 0px;"><STRONG>FULL&nbsp;</STRONG>
+</span>
+
+</td>
+<td style="text-align: justify;">
+ <span class="cls_005" style="border-top: 0px;">☐</span>
+
+ <span class="cls_006" style="border-top: 0px;"><STRONG>LIMITED WARRANTY</STRONG>&nbsp;The dealer will pay % of the labor and % of the parts for the covered systems that fail during the warranty period. Ask the dealer for a copy of the warranty document for a full explanation of warranty coverage, exclusions, and the dealer’s repair obligations. Under state
+ law, “implied warranties” may give you even more rights 
+</span>
+
+</td>
+</tr>
+</table>
+
+
+
+<br/>
+<table class="cls_t" width="100%" style="" >
+    <tr>
+        <th width="50%">
+        <STRONG>SYSTEMS COVERED:</STRONG>
+        </th>
+         <th width="50%">
+         <STRONG>DURATION:</STRONG>
+        </th>
+    </tr>
+    <tr>
+        <th width="50%">
+        <hr></hr>
+        </th>
+         <th width="50%">
+        <hr></hr>
+        </th>   
+    </tr>
+        <tr>
+        <th width="50%">
+        <hr></hr>
+        </th>
+         <th width="50%">
+        <hr></hr>
+        </th>   
+    </tr>
+        <tr>
+        <th width="50%">
+        <hr></hr>
+        </th>
+         <th width="50%">
+        <hr></hr>
+        </th>   
+    </tr>
+        <tr>
+        <th width="50%">
+        <hr></hr>
+        </th>
+         <th width="50%">
+        <hr></hr>
+        </th>   
+    </tr>
+        <tr>
+        <th width="50%">
+        <hr></hr>
+        </th>
+         <th width="50%">
+        <hr></hr>
+        </th>   
+    </tr>
+        <tr>
+        <th width="50%">
+        <hr></hr>
+        </th>
+         <th width="50%">
+        <hr></hr>
+        </th>   
+    </tr>
+        <tr>
+        <th width="50%">
+        <hr></hr>
+        </th>
+         <th width="50%">
+        <hr></hr>
+        </th>   
+    </tr>
+</table>
+
+<table class="cls_t" style="text-align:center;" cellspacing="0">
+            <tr valign="top">
+                <td style="text-align: justify;">
+ <span class="cls_005" style="border-top: 0px;">☐</span>
+
+ <span class="cls_006" style="border-top: 0px;"><STRONG>SERVICE CONTRACT.</STRONG>&nbsp;A service contract is available at an extra charge on this vehicle. Ask for details as to
+coverage, deductible, price, and exclusions. If you buy a service contract within 90 days of the time of sale, state
+law “implied warranties” may give you additional rights.
+</span>
+        </td>   
+    </tr>
+</table>
+
+<br/>
+<table class="cls_t" style="text-align:center;" cellspacing="0">
+            <tr valign="top">
+                <td style="text-align: justify;">
+ <span class="cls_006" style="border-top: 0px;"><STRONG>PRE-PURCHASE INSPECTION:</STRONG>&nbsp;ASK THE DEALER IF YOU MAY HAVE THIS VEHICLE INSPECTED BY YOUR
+MECHANIC EITHER ON OR OFF THE LOT.
+</span>
+        </td>   
+    </tr>
+</table>
+<br/>
+<table class="cls_t" style="text-align:center;" cellspacing="0">
+            <tr valign="top">
+                <td style="text-align: justify;">
+ <span class="cls_006" style="border-top: 0px;"><STRONG>SEE THE BACK OF THIS FORM</STRONG>&nbsp;for important additional information, including a list of some major defects that
+may occur in used vehicles.
+</span>
+
+        </td>  
+        <br/><br/> 
+    </tr>
+</table>
+</div>
+<div style="text-align:center;padding-top:5px;">
+<span class="headline">
+Page 1 of&nbsp; 2 - Standard
+</span>
+</div>
+<hr style="height:1px; visibility:hidden;padding:0px;margin:0px" />
+<div class="footer" align="center">
+<apex:image value="{!DealerImsComLogo}" width="177" height="46" />
+          </div> 
+<div style="page-break-after:always;"></div>
+<!----------------------------------------------PAGE 2------------------------------------------------------------------>
+<div class="cls_c" style="border-style:solid;border:1px solid black; overflow:hidden">
+<br/><br/><br/>
+<table class="cls_t" width="100%" style="text-align:center;" cellspacing="0">
+            <tr valign="top">
+                <td>
+                
+ <span class="cls_005" style="border-top: 0px;"><STRONG>Below is a list of some major defects that may occur in used motor vehicles.</STRONG></span>
+       
+        </td>  
+       
+    </tr>
+    <tr>
+     <td width="100%">
+        <div style="padding-top:8px;padding-right:0px;margin-left:0px;" class="cls_002">
+        </div>
+         </td>
+    </tr>
+</table>
+<table width="100%" cellspacing="0">
+    <tr valign="top">
+        <td width="50%">
+        
+        <p class="p_head">Frame &#38; Body</p>
+        <p class="p_body">
+        Frame - cracks, corrective welds, or rusted through <br/>
+        Dog tracks - bent or twisted frame
+        </p>
+        <p class="p_head">Engine</p>
+        <p class="p_body">
+        Oil leakage, excluding normal seepage<br/>
+Cracked block or head<br/>
+Belts missing or inoperable<br/>
+Knocks or misses related to camshaft lifters and
+push rods<br/>
+Abnormal exhaust discharge
+        </p>       
+         <p class="p_head">Transmission &#38; Drive Shaft</p>
+        <p class="p_body">
+Improper fluid level or leakage, excluding normal
+seepage<br/>
+Cracked or damaged case which is visible<br/>
+Abnormal noise or vibration caused be faulty<br/>
+transmission or drive shaft
+Improper shifting or functioning in any gear<br/>
+Manual clutch slips or chatters
+        </p>
+          <p class="p_head">Differential</p>
+        <p class="p_body">
+Improper fluid level or leakage excluding normal
+seepage<br/>
+Cracked or damaged housing which is visible<br/>
+Abnormal noise or vibration caused by faulty
+differential
+        </p>       
+           <p class="p_head">Cooling System</p>
+        <p class="p_body">
+Leakage including radiator<br/>
+Improperly functioning water pump
+        </p>        
+            <p class="p_head">Electrical System</p>
+        <p class="p_body">
+Battery leakage<br/>
+Improperly functioning alternator, generator,
+battery, or starter
+        </p>       
+             <p class="p_head">Fuel System</p>
+        <p class="p_body">
+Visible leakage
+        </p>  
+            <p class="p_head">Inoperable Accessories</p>
+        <p class="p_body">
+Gauges or warning devices<br/>
+Air Conditioner<br/>
+Heater &#38; defroster
+        </p>       
+        </td>
+        
+        <td width="50%">
+        <p class="p_head">Brake System</p>
+        <p class="p_body">
+Failure warning light broken<br/>
+Pedal not firm under pressure (DOT spec.)<br/>
+Not enough pedal reserve (DOT spec.)<br/>
+Hoses damaged<br/>
+Drum or rotor too thin (Mfg. spec.)<br/>
+Lining or pad thickness less than 1/32 inch<br/>
+Power unit not operating or leaking<br/>
+Structural or mechanical parts damaged
+        </p>     
+        <p class="p_head">Steering System</p>
+        <p class="p_body">
+Too much free play at steering wheel (DOT spec.)<br/>
+Free play in linkage more than 1/4 inch<br/>
+Steering gear binds or jams<br/>
+Front wheels aligned improperly (DOT spec.)<br/>
+Power unit belts cracked or slipping<br/>
+Power unit fluid level improper
+        </p> 
+        <p class="p_head">Suspension System</p>
+        <p class="p_body">
+Ball joint seals damaged<br/>
+Structural parts bent or damaged<br/>
+Stabilizer bar disconnected<br/>
+Spring broken<br/>
+Shock absorber mounting loose<br/>
+Rubber bushings damaged or missing<br/>
+Radius rod damaged or missing<br/>
+Shock absorber leaking or functioning improperly
+        </p>       
+        <p class="p_head">Tires</p>
+        <p class="p_body">
+Tread depth less than 2/32 inch<br/>
+Sizes mismatched<br/>
+Visual damage
+        </p>        
+         <p class="p_head">Wheels</p>
+        <p class="p_body">
+Visible cracks, damage or repairs<br/>
+Mounting bolts loose or missing
+        </p> 
+         <p class="p_head">Exhaust System</p>
+        <p class="p_body">
+Leakage
+        </p>
+        </td>
+    </tr>
+</table>
+<br/>
+<table class="cls_t2" width="94%" cellspacing="0">
+    <tr valign="top">
+        <td class="cls_t2" width="47%">
+     <table  width="100%" cellspacing="0">
+            <tr class="cls_t3" valign="top">
+                <th class="cls_t3" width="50%">
+                 <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__c}"/>
+                 <hr class="hr_4"></hr>
+                   </th>
+            </tr>
+            <tr>
+                <td class="cls_t3" width="50%">DEALER</td>
+            </tr>
+            
+                <tr class="cls_t4" valign="top">
+                <th class="cls_t4" width="50%">
+                 <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingStreet}"/>
+                 &nbsp;
+                 <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingCity}"/>  
+                   <hr class="hr_4"></hr>
+                   </th>
+            </tr>
+            <tr>
+                <td class="cls_t3" width="50%">ADDRESS</td>
+            </tr>
+                         <tr class="cls_t4" valign="top">
+                <th class="cls_t4" width="50%">
+                 <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingState}"/>  
+                  &nbsp;  
+                 <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingPostalCode}"/>
+                 &nbsp;
+                 <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingCountry}"/>
+                
+                 <hr class="hr_4"></hr>
+                   </th>
+            </tr>
+                           
+            <tr>
+                <td class="cls_t3" width="50%">ADDRESS</td>
+            </tr>                <tr class="cls_t4" valign="top">
+                <th class="cls_t4" width="50%">
+                     Account Manager
+                   <hr class="hr_4"></hr>
+                   </th>
+            </tr>
+            <tr>
+                <td class="cls_t3" width="50%">SEE FOR COMPLAINTS</td>
+            </tr>
+           
+        </table>
+        
+        </td>
+        <td width="50%">
+        <br/>
+        <p><STRONG>Receipt of Copy Acknowledged:</STRONG></p>
+
+<p>I hereby acknowledge receipt of the Buyers Guide at
+the closing of this sale.
+</p>
+<br/>
+                 <hr class="hr_3"></hr>
+ <p>(TRANSFEREE’S SIGNATURE - BUYER)
+</p>               
+<br/>
+                 
+        </td>
+    </tr>
+</table>    
+<br/>        
+<table class="cls_t" style="text-align:center;" cellspacing="0" controller="sendEmail_Buy_Guide">
+            <tr valign="top">
+                <td style="text-align: justify;">
+ <span class="cls_006" style="border-top: 0px;"><STRONG>IMPORTANT:</STRONG>&nbsp;The information on this form is part of any contract to buy this vehicle. Removal of this label before
+customer purchase (except for purpose of test-driving) is a violation of federal law (16 C.F.R. 455).
+</span>
+        </td>  
+        <br/>
+    </tr>
+</table>
+
+
+</div>
+
+
+
+<div style="text-align:center;padding-top:5px;">
+<span class="headline">
+Page 2 of&nbsp; 2 - Standard
+</span>
+</div>
+<hr style="height:3px; visibility:hidden;padding:0px;margin:0px" />
+<div class="footer" align="center">
+<apex:image value="{!DealerImsComLogo}" width="177" height="46" />
+          </div> 
+</body>
+</html>
+
+</apex:component>

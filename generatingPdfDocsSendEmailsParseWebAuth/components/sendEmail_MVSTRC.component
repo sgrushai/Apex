@@ -1,0 +1,169 @@
+<apex:component access="global" allowDML="true" controller="sendEmail_MVSTRC">
+<apex:attribute name="dealer__Deal__c" description="" type="dealer__Deal__c" />
+<head>
+    <style>
+           body {
+                font-family: Verdana, Geneva, sans-serif;
+                font-size: 12px;
+                }
+                
+               
+        p.header{
+                                font-size: 16px;
+                font-weight: bold;
+
+                }
+       
+           span.cls_004{
+   font-family:"Arial Unicode MS" "serif";
+   font-size:24.0px;font-weight:bold;
+margin-right:0px;
+margin-left:0px;
+padding:0px;
+   } 
+
+    </style>
+</head>
+
+<body>
+ 
+ <p class="header">TEXAS MOTOR VEHICLE SALES TAX RESALE CERTIFICATE</p>
+  <br/>
+  <table width="100%"  style="border-collapse: collapse; border: 2px solid black;">
+  <tr>
+    <td width="65%" style="border-collapse: collapse; border: 1px solid black; padding-left:8px;">
+   <span style="font-weight:lighter"> Name of purchaser, firm or agency</span>
+    <br/>
+    <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__c}"/>
+    </td>
+    <td width="35%" style="border-collapse: collapse; border: 1px solid black;padding-left:8px;">Dealer number<br/>
+    <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.AccountNumber}"/>
+    </td>
+     </tr>
+  <tr>
+    <td width="65%" style="border-collapse: collapse; border: 1px solid black; padding-left:8px;">Address <i>(Street &#38; number, P.O. Box or Route number)</i><br/>
+    <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingStreet}"/>
+    </td>
+    <td width="35%" style="border-collapse: collapse; border: 1px solid black;padding-left:8px;">Daytime phone <i>(Area code and number)</i><br/>
+    <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.Phone}"/>
+    </td>
+     </tr>
+  <tr>
+    <td colspan="2" style="border-collapse: collapse; border: 1px solid black;padding-left:8px;">City, State and ZIP code<br/>
+    <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingCity}"/>,&nbsp;
+    <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingState}"/>,&nbsp;
+    <apex:outputField value="{!dealer__Deal__c.Buyer_Account_Doc2__r.BillingPostalCode}"/>
+    </td>
+  </tr>
+</table> 
+  
+  <br/>
+  
+  <table width="100%" class="bord" style="border: 2px solid black; padding-left:12px;padding-right:12px;">
+      <tr>
+          <td colspan="4" width="100%">
+            I, the purchaser named above, claim the right to make a non-taxable purchase for resale of the motor vehicle described below:
+             <table width="100%" style="border-collapse: collapse;margin-top:12px;">
+                  <tr >
+                        <td colspan="3" width="100%" style="border-bottom: 1px solid black;"></td>
+                  </tr> 
+                  <tr>
+                       <td width="40%" style="border-collapse: collapse; border: 1px solid black;border-left:0px;">
+                       <span style="font-weight:lighter">Vehicle identification number</span>
+                        <br/>
+                        <apex:outputField value="{!dealer__Deal__c.dealer__VIN__c}"/>
+                        </td>
+                        <td width="35%" style="border-collapse: collapse; border: 1px solid black;padding-left:8px;">Make of vehicle<br/>
+                        <apex:outputField value="{!dealer__Deal__c.dealer__Make__c}"/>
+                        </td>
+                        <td width="25%" style="border-collapse: collapse; border: 1px solid black;padding-left:8px; border-right:0px;">Year model<br/>
+                        <apex:outputField value="{!dealer__Deal__c.dealer__Model__c}"/>
+                        </td> 
+
+                  </tr> 
+                  <tr>
+                       <td colspan="3" width="100%" style="border-collapse: collapse; border: 1px solid black;border-left:0px;border-right:0px;">
+                       <span style="font-weight:lighter">Seller</span>
+                        <br/>
+                        <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__c}"/>
+                        </td>
+
+                  </tr> 
+                  <tr>
+                       <td colspan="3" width="100%" style="border-collapse: collapse; border: 1px solid black;border-left:0px;border-right:0px;">
+                       <span style="font-weight:lighter">Street Address</span>
+                        <br/>
+                        <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.BillingStreet}"/>
+                        </td>
+
+                  </tr> 
+                  <tr>
+                       <td colspan="3" width="100%" style="border-collapse: collapse; border: 1px solid black;border-left:0px;border-right:0px;">
+                       <span style="font-weight:lighter">City, state and ZIP code</span>
+                        <br/>
+                        <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.BillingCity}"/>,&nbsp;
+                        <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.BillingState}"/>,&nbsp;
+                        <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer_Doc2__r.BillingPostalCode}"/>
+                        </td>
+
+                  </tr>                   
+              </table> 
+          <tr>
+              <td width="100%">
+               <hr style="height:2px; visibility:hidden;" />
+              <p>
+              Purchaser claims this vehicle is being purchased for resale purposes <u><i>ONLY</i></u>.
+              <br/><br/>
+              I understand that I will be liable for payment of motor vehicle sales or use taxes which may become due if I fail to comply with the provisions of the Tax Code: Chapter 152. Taxes on Sale, Rental, and Use of Motor Vehicles.
+              <br/><br/>
+              <i>
+              I understand that it is a criminal offense to give a Texas Motor Vehicle Sales Tax Resale Certificate to the seller for a motor vehicle that I know, at the time of purchase, will be used in a manner other than that expressed in this certificate and that the offense is a felony punishable by imprisonment for not less than two nor more than five years or a fine of not more than $1,000, or both.
+              </i>
+              <br/><br/>
+              </p>
+              </td>
+          </tr>
+          </td>
+      </tr>
+        
+</table> 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="bord" style="border-left: 2px solid black;border-right: 2px solid black;border-bottom: 2px solid black; padding-left:1px;">
+      <tr>
+     <td width="1%" style="padding:0px;margin:0px;padding-left:1px;vertical-align: middle;">
+                <p class="cls_004">
+                sign<br/>
+                here
+                </p>
+              </td>
+              <td width="1%" style="padding:0px;margin:0px;vertical-align: middle;">
+                <span class="cls_004">
+                ➧
+                </span>
+              </td>  
+              <td width="48%" style="border-collapse: collapse;border-right: 1px solid black;padding-left:20px;margin:0px;vertical-align: top;">
+             <span style="font-weight:lighter">Purchaser</span>
+              </td> 
+              <td width="30%" style="border-collapse: collapse;border-right: 1px solid black;padding-left:8px;margin:0px;vertical-align: top;">
+                <span style="font-weight:lighter">Title</span>
+                
+                
+              </td> 
+              <td width="20%" style="padding-left:8px;vertical-align: top;">
+                <span style="font-weight:lighter">Date</span>
+                <br/>
+                <apex:outputField value="{!dealer__Deal__c.Sale_Date_Doc__c}"/>
+              </td>
+       </tr>
+ </table>       
+
+<br/>
+<p style="text-align:center">
+ This certificate should be furnished to the seller. Do <strong>not</strong> send the completed certificate to the Comptroller of Public Accounts.
+ </p>
+ <hr style="height:170px; visibility:hidden;" />
+<div class="footer" align="center">
+<apex:image value="{!DealerImsComLogo}" width="177" height="46" />
+          </div> 
+</body>
+</apex:component>

@@ -1,0 +1,242 @@
+<apex:page showHeader="false" renderAs="pdf" standardController="dealer__Deal__c" applyBodyTag="false">
+    <head>
+        <style>
+            body {
+                font-family: Verdana, Geneva, sans-serif;
+                font-size: 12px;
+            }
+        </style>
+    
+    </head>
+
+    <body>
+        <table width="100%" cellspacing="0">
+            <tr width="100%">
+                <td width="50%">
+                    <img src="https://c.na11.content.force.com/servlet/servlet.ImageServer?id=015G0000005Gqb7&oid=00DG0000000kzAm&lastMod=1393352578000" width="100%" />
+                </td>
+                <td width="50%">
+                    <table width="100%" style="padding-left:25px;">
+                        <tr>
+                            <td><strong>Sale Date:</strong></td>
+                            <td><apex:outputField value="{!dealer__Deal__c.Purchase_Date__c}"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Deal #:</strong></td>
+                            <td><apex:outputField value="{!dealer__Deal__c.dealer__Deal_ID__c}"/></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%" valign="top" style="padding-left:25px;border-top:1px solid black;border-left:1px solid black;border-bottom:1px solid black;">
+                    <h2>BUYER:</h2>
+                    <apex:outputField value="{!dealer__Deal__c.dealer__Buyer__c}"/><br />
+                    <apex:outputField value="{!dealer__Deal__c.dealer__Buyer__r.BillingStreet}"/><br />
+                    <apex:outputField value="{!dealer__Deal__c.dealer__Buyer__r.BillingCity}"/>
+                    <apex:outputText rendered="{!IF(NOT(ISBLANK(dealer__Deal__c.dealer__Buyer__r.BillingCity)), true, false)}">,&nbsp;</apex:outputText>
+                    <apex:outputField value="{!dealer__Deal__c.dealer__Buyer__r.BillingState}"/>&nbsp;
+                    <apex:outputField value="{!dealer__Deal__c.dealer__Buyer__r.BillingPostalCode}"/>&nbsp;
+                    <apex:outputField value="{!dealer__Deal__c.dealer__Buyer__r.BillingCountry}"/><br /><br />
+                    <apex:outputField value="{!dealer__Deal__c.dealer__Buyer__r.Phone}"/><br />
+                    <apex:outputField value="{!dealer__Deal__c.dealer__Buyer__r.website}"/>
+                </td>
+                <td width="50%" valign="top" style="padding-left:25px;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;padding-bottom:15px;">
+                    <h2>SELLER:</h2>
+                    <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer__c}"/><br />
+                    <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer__r.BillingStreet}"/><br />
+                    <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer__r.BillingCity}"/>
+                    <apex:outputText rendered="{!IF(NOT(ISBLANK(dealer__Deal__c.Proxy_Dealer__r.BillingCity)), true, false)}">,&nbsp;</apex:outputText>
+                    <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer__r.BillingState}"/>&nbsp;
+                    <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer__r.BillingPostalCode}"/>&nbsp;
+                    <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer__r.BillingCountry}"/><br /><br />
+                    <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer__r.Phone}"/><br />
+                    <apex:outputField value="{!dealer__Deal__c.Proxy_Dealer__r.website}"/>
+                </td>
+            </tr>
+        </table>
+        <table width="100%" style="text-align:center;margin-top:15px;" cellspacing="0">
+            <tr width="100%" valign="top">
+                <td width="20%" style="border-top:1px solid black;border-left:1px solid black;border-bottom:1px solid black;padding-bottom:15px;">
+                    <h3>YEAR</h3>
+                    <apex:outputField value="{!dealer__Deal__c.dealer__Year__c}"/>
+                </td>
+                <td width="20%" style="border-top:1px solid black;border-bottom:1px solid black;">
+                    <h3>MAKE</h3>
+                    <apex:outputField value="{!dealer__Deal__c.dealer__Make__c}"/>
+                </td>
+                <td width="20%" style="border-top:1px solid black;border-bottom:1px solid black;">
+                    <h3>MODEL</h3>
+                    <apex:outputField value="{!dealer__Deal__c.dealer__Model__c}"/>
+                </td>
+                <td width="20%" style="border-top:1px solid black;border-bottom:1px solid black;">
+                    <h3>VIN</h3>
+                    <apex:outputField value="{!dealer__Deal__c.dealer__VIN__c}"/>
+                </td>
+                <td width="20%" style="border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;">
+                    <h3>MILEAGE</h3>
+                    <apex:outputField value="{!dealer__Deal__c.dealer__Mileage__c}"/>
+                </td>
+            </tr>
+        </table>
+        <table width="100%" style="margin-top:15px;" cellspacing="0">
+            <tr width="100%">
+                <td style="border-top:1px solid black;border-left:1px solid black;border-right:1px solid black;" colspan="3">
+                    <h2 style="padding-left:25px;">CUSTOMER TRANSACTIONS</h2>
+                </td>
+            </tr>
+            <tr width="100%">
+                <td width="33%" align="right" style="border-bottom:0.5px solid black;border-left:1px solid black;padding-right:25px;"><strong>TRANSACTION</strong></td>
+                <td width="34%" style="border-bottom:0.5px solid black;"><strong>AMOUNT</strong></td>
+                <td width="33%" style="border-bottom:0.5px solid black;border-right:1px solid black;"><strong>NOTES</strong></td>
+            </tr>
+            
+            <tr width="100%">
+                <td width="33%" align="right" style="border-bottom:0.5px solid black;border-left:1px solid black;padding-right:25px;">Sales Price</td>
+                <td width="34%" style="border-bottom:0.5px solid black;"><apex:outputField value="{!dealer__Deal__c.Sales_Price__c}"/></td>
+                <td width="33%" style="border-bottom:0.5px solid black;border-right:1px solid black;"><apex:outputField value="{!dealer__Deal__c.Price_Notes__c}"/></td>
+            </tr>
+
+            <tr width="100%">
+                <td width="33%" align="right" style="border-bottom:0.5px solid black;border-left:1px solid black;padding-right:25px;">Standard Buyer Fee</td>
+                <td width="34%" style="border-bottom:0.5px solid black;"><apex:outputField value="{!dealer__Deal__c.Standard_Buyer_Fee__c}"/></td>
+                <td width="33%" style="border-bottom:0.5px solid black;border-right:1px solid black;"><apex:outputField value="{!dealer__Deal__c.Buyer_Fee_Notes__c}"/></td>
+            </tr>
+            
+            <apex:outputText rendered="{!IF(NOT(ISBLANK(dealer__Deal__c.Deposit__c)), true, false)}">
+            <tr width="100%">
+                <td width="33%" align="right" style="border-bottom:0.5px solid black;border-left:1px solid black;padding-right:25px;">Deposit</td>
+                <td width="34%" style="border-bottom:0.5px solid black;"><apex:outputField value="{!dealer__Deal__c.Deposit__c}"/></td>
+                <td width="33%" style="border-bottom:0.5px solid black;border-right:1px solid black;"><apex:outputField value="{!dealer__Deal__c.Deposit_Notes__c}"/></td>
+            </tr>
+            </apex:outputText>
+            
+            <apex:outputText rendered="{!IF(NOT(ISBLANK(dealer__Deal__c.Shipping_Fee__c)), true, false)}">
+            <tr width="100%">
+                <td width="33%" align="right" style="border-bottom:0.5px solid black;border-left:1px solid black;padding-right:25px;">Shipping Fee</td>
+                <td width="34%" style="border-bottom:0.5px solid black;"><apex:outputField value="{!dealer__Deal__c.Shipping_Fee__c}"/></td>
+                <td width="33%" style="border-bottom:0.5px solid black;border-right:1px solid black;"><apex:outputField value="{!dealer__Deal__c.Shipping_Notes__c}"/></td>
+            </tr>
+            </apex:outputText>
+            
+            <apex:outputText rendered="{!IF(NOT(ISBLANK(dealer__Deal__c.Mailing_Fee__c)), true, false)}">
+            <tr width="100%">
+                <td width="33%" align="right" style="border-bottom:0.5px solid black;border-left:1px solid black;padding-right:25px;">Mailing Fee</td>
+                <td width="34%" style="border-bottom:0.5px solid black;"><apex:outputField value="{!dealer__Deal__c.Mailing_Fee__c}"/></td>
+                <td width="33%" style="border-bottom:0.5px solid black;border-right:1px solid black;"><apex:outputField value="{!dealer__Deal__c.Mailing_Notes__c}"/></td>
+            </tr>
+            </apex:outputText>
+            
+            <apex:outputText rendered="{!IF(NOT(ISBLANK(dealer__Deal__c.Export_Fee__c)), true, false)}">
+            <tr width="100%">
+                <td width="33%" align="right" style="border-bottom:0.5px solid black;border-left:1px solid black;padding-right:25px;">Export Fee</td>
+                <td width="34%" style="border-bottom:0.5px solid black;"><apex:outputField value="{!dealer__Deal__c.Export_Fee__c}"/></td>
+                <td width="33%" style="border-bottom:0.5px solid black;border-right:1px solid black;"><apex:outputField value="{!dealer__Deal__c.Export_Notes__c}"/></td>
+            </tr>
+            </apex:outputText>
+            
+            <apex:outputText rendered="{!IF(NOT(ISBLANK(dealer__Deal__c.Documentation_Fee__c)), true, false)}">
+            <tr width="100%">
+                <td width="33%" align="right" style="border-bottom:0.5px solid black;border-left:1px solid black;padding-right:25px;">Documentation Fee</td>
+                <td width="34%" style="border-bottom:0.5px solid black;"><apex:outputField value="{!dealer__Deal__c.Documentation_Fee__c}"/></td>
+                <td width="33%" style="border-bottom:0.5px solid black;border-right:1px solid black;"><apex:outputField value="{!dealer__Deal__c.Doc_Fee_Notes__c}"/></td>
+            </tr>
+            </apex:outputText>
+                
+            <apex:outputText rendered="{!IF(NOT(ISBLANK(dealer__Deal__c.Adjustment__c)), true, false)}">        
+            <tr width="100%">
+                <td width="33%" align="right" style="border-bottom:0.5px solid black;border-left:1px solid black;padding-right:25px;">Adjustment</td>
+                <td width="34%" style="border-bottom:0.5px solid black;"><apex:outputField value="{!dealer__Deal__c.Adjustment__c}"/></td>
+                <td width="33%" style="border-bottom:0.5px solid black;border-right:1px solid black;"><apex:outputField value="{!dealer__Deal__c.Adjustment_Notes__c}"/></td>
+            </tr>
+            </apex:outputText>
+                  
+            <apex:outputText rendered="{!IF(NOT(ISBLANK(dealer__Deal__c.Customer_Payment__c)), true, false)}">      
+            <tr width="100%">
+                <td width="33%" align="right" style="border-bottom:1px solid black;border-left:1px solid black;padding-right:25px;">Customer Payment</td>
+                <td width="34%" style="border-bottom:1px solid black;"><apex:outputField value="{!dealer__Deal__c.Customer_Payment__c}"/></td>
+                <td width="33%" style="border-bottom:1px solid black;border-right:1px solid black;"><apex:outputField value="{!dealer__Deal__c.Payment_Notes__c}"/></td>
+            </tr>
+            </apex:outputText>
+            
+            
+            <tr width="100%">
+                <td width="33%" align="right" style="border-bottom:1px solid black;border-left:1px solid black;padding-right:25px;"><span style="font-size:18px;font-weight:bold;">TOTAL DUE</span></td>
+                <td width="34%" style="border-bottom:1px solid black;"><span style="font-size:18px;"><apex:outputField value="{!dealer__Deal__c.Total_Due__c}"/></span></td>
+                <td width="33%" style="border-bottom:1px solid black;border-right:1px solid black;"></td>
+            </tr>
+        </table>
+        <table width="100%" cellspacing="0" style="margin-top:15px;">
+            <tr width="100%">
+                <td style="border-top:1px solid black;border-left:1px solid black;border-right:1px solid black;">
+                    <h2 style="padding-left:25px;">TERMS AND CONDITIONS</h2>
+                </td>
+            </tr>
+            <tr width="100%">
+                <td style="border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;">
+                    <p style="padding-left:25px;padding-right:25px;text-align:justify;">BUYER (shown above)  is the purchaser, of the above vehicle. The total amount due (shown above) is payable in full to SELLER (shown above) within two (2) business days of the date of sale. Once payment is received by SELLER, arrangements will be made to have this vehicle released to the purchaser. THIS VEHICLE IS SOLD AS IS, WHERE IS. THERE ARE NO WARRANTIES OR GUARANTEES EXPRESSED OR IMPLIED OF ANY KIND. ALL SALES ARE FINAL. THIS VEHICLE IS THE PURCHASERS RESPONSIBILITY ONCE PAYMENT IS RECEIVED AND THE VEHICLE IS RELEASED. SOME ITEMS MIGHT BE SUBJECT TO SALES TAX AND OTHER FEES.</p>
+                </td>
+            </tr>
+        </table>
+        <table width="100%" cellspacing="0" style="margin-top:15px;">
+            <tr width="100%">
+                <td style="border-top:1px solid black;border-left:1px solid black;border-right:1px solid black;" colspan="4">
+                    <h2 style="padding-left:25px;">PAYMENT INSTRUCTIONS</h2>
+                </td>
+            </tr>
+            <tr width="100%">
+                <td style="border-left:1px solid black;padding-bottom:5px;">
+                     <span style="padding-left:25px;"><strong>Bank Name:</strong></span>
+                </td>
+                <td style="padding-bottom:5px;">
+                    CHASE BANK
+                </td>
+                <td style="padding-bottom:5px;">
+                     <span style="padding-left:25px;"><strong>Bank Address:</strong></span>
+                </td>
+                <td style="border-right:1px solid black;padding-bottom:5px;">
+                    6200 Brecksville Rd, Independence, OH 44131
+                </td>
+            </tr>
+            
+            <tr width="100%">
+                <td style="border-left:1px solid black;padding-bottom:5px;">
+                     <span style="padding-left:25px;"><strong>Account #:</strong></span>
+                </td>
+                <td style="padding-bottom:5px;">
+                    551131399
+                </td>
+                <td style="padding-bottom:5px;">
+                     <span style="padding-left:25px;"><strong>Wire Routing ABA #:</strong></span>
+                </td>
+                <td style="border-right:1px solid black;padding-bottom:5px;">
+                    044000037
+                </td>
+            </tr>
+            
+            <tr width="100%">
+                <td style="border-left:1px solid black;padding-bottom:5px;">
+                     <span style="padding-left:25px;"><strong>Swift Code:</strong></span>
+                </td>
+                <td style="padding-bottom:5px;">
+                    CHASU33
+                </td>
+                <td style="padding-bottom:5px;">
+                     <span style="padding-left:25px;"><strong>Name on Account:</strong></span>
+                </td>
+                <td style="border-right:1px solid black;padding-bottom:5px;">
+                    State Value Auto, Inc.
+                </td>
+            </tr>
+            
+            <tr width="100%">
+                <td style="border-left:1px solid black;border-bottom:1px solid black;padding-bottom:20px;">
+                     <span style="padding-left:25px;"><strong>Business Address:</strong></span>
+                </td>
+                <td colspan="3" style="border-right:1px solid black;border-bottom:1px solid black;padding-bottom:20px;">
+                    2620 N. Shepherd Dr. Houston, TX 77008-1930
+                </td>
+            </tr>                       
+        </table>
+    </body>
+</apex:page>
